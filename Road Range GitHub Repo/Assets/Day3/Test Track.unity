@@ -945,7 +945,7 @@ MonoBehaviour:
   driftVerticalSpeed: 10
   driftRotationSpeed: 15
   minFov: 50
-  maxFov: 90
+  maxFov: 100
   fovSpeedCap: 500
   fovTransitionSpeed: 20
 --- !u!1 &348973110
@@ -2440,7 +2440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5647b8115d928944abe31f76011e7f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Car2
-  driveAcceleration: 500
+  driveAcceleration: 380
   driveTurnSpeed: 60
   driveDrag: 3
   driftAcceleration: 30
@@ -2448,11 +2448,11 @@ MonoBehaviour:
   driftDrag: 0.7
   driftEaseInSpeed: 1.5
   driftEaseOutSpeed: 1
-  shooterAcceleration: 500
+  shooterAcceleration: 380
   shooterTurnSpeed: 40
   shooterDrag: 3
-  boostMultiplier: 1.5
   transitionSpeed: 5
+  boostMultiplier: 1.7
   hoverHeight: 1
   heightCorrectionSpeed: 10
   slopeAlignSpeed: 10

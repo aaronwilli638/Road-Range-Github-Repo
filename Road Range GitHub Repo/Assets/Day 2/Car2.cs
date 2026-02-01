@@ -20,10 +20,11 @@ public class Car2 : MonoBehaviour
     public float shooterAcceleration = 40f; 
     public float shooterTurnSpeed = 80f;    
     public float shooterDrag = 4f;
+    public float transitionSpeed = 5f;
 
     [Header("Boost")]
     public float boostMultiplier = 2.0f;
-    public float transitionSpeed = 5f;
+
 
     [Header("Height")]
     public float hoverHeight = 1.5f;
