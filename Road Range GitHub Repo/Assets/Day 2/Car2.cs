@@ -19,6 +19,13 @@ public class Car2 : MonoBehaviour
     public float boostMultiplier = 2.0f;
     public float transitionSpeed = 5f;
 
+    public float hoverHeight = 1.5f;
+    public float heightCorrectionSpeed = 10f;
+    public float slopeAlignSpeed = 15f;
+    public float gravity = 40f;
+    public float groundCheckDistance = 3.0f;
+    public LayerMask groundLayer;
+
     private Rigidbody rb;
     private CarShooter carShooter; 
     private EnergySystem energySystem;
@@ -26,9 +33,11 @@ public class Car2 : MonoBehaviour
     private Vector2 moveInput;
     private bool isBoosting;
     private bool isDrifting;
+    private bool isGrounded;
 
     public float SteerInput => moveInput.x; 
     public bool IsDrifting => isDrifting;
+    public bool IsGrounded => isGrounded;
 
     private float currentAcceleration;
     private float currentTurnSpeed;
@@ -41,7 +50,8 @@ public class Car2 : MonoBehaviour
         energySystem = GetComponent<EnergySystem>();
 
         rb.linearDamping = 0; 
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        rb.useGravity = false; 
+        rb.constraints = RigidbodyConstraints.None;
 
         currentAcceleration = driveAcceleration;
         currentTurnSpeed = driveTurnSpeed;
@@ -75,10 +85,34 @@ public class Car2 : MonoBehaviour
 
     void FixedUpdate()
     {
+        float dt = Time.fixedDeltaTime;
         rb.angularVelocity = Vector3.zero;
 
-        bool aimActive = carShooter != null && carShooter.IsAiming;
+        RaycastHit hit;
+        Vector3 rayOrigin = transform.position + transform.up * 0.5f; 
         
+        isGrounded = Physics.Raycast(rayOrigin, -transform.up, out hit, groundCheckDistance, groundLayer, QueryTriggerInteraction.Ignore);
+
+        if (isGrounded)
+        {
+            if (hit.collider.transform.root == transform.root || hit.distance < 0.05f)
+            {
+                isGrounded = false;
+            }
+        }
+
+        if (isGrounded)
+        {
+            Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, slopeAlignSpeed * dt);
+        }
+        else
+        {
+            Quaternion upright = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, upright, 2f * dt);
+        }
+
+        bool aimActive = carShooter != null && carShooter.IsAiming;
         float targetAccel = driveAcceleration;
         float targetTurn = driveTurnSpeed;
         float targetDrag = driveDrag;
@@ -91,7 +125,7 @@ public class Car2 : MonoBehaviour
 
             if (energySystem != null)
             {
-                energySystem.Refill(rb.linearVelocity.magnitude * Time.fixedDeltaTime * energySystem.driftRefillPerMeter);
+                energySystem.Refill(rb.linearVelocity.magnitude * dt * energySystem.driftRefillPerMeter);
             }
         }
         else if (aimActive)
@@ -101,24 +135,60 @@ public class Car2 : MonoBehaviour
             targetDrag = shooterDrag;
         }
 
-        float dt = Time.fixedDeltaTime;
         currentAcceleration = Mathf.Lerp(currentAcceleration, targetAccel, transitionSpeed * dt);
         currentTurnSpeed = Mathf.Lerp(currentTurnSpeed, targetTurn, transitionSpeed * dt);
         currentDrag = Mathf.Lerp(currentDrag, targetDrag, transitionSpeed * dt);
 
-        if (moveInput.x != 0 && (Mathf.Abs(moveInput.y) > 0.05f || rb.linearVelocity.magnitude > 1f))
+        if (isGrounded && moveInput.x != 0 && (Mathf.Abs(moveInput.y) > 0.05f || rb.linearVelocity.magnitude > 1f))
         {
             float turnAmount = moveInput.x * currentTurnSpeed * dt;
-            transform.Rotate(0, turnAmount, 0);
+            transform.Rotate(0, turnAmount, 0); 
         }
 
         Vector3 currentVelocity = rb.linearVelocity;
+        
         float appliedAccel = (moveInput.y != 0) ? currentAcceleration * moveInput.y : 0;
-
         if (isBoosting) appliedAccel *= boostMultiplier;
+        
+        if (isGrounded)
+        {
+            currentVelocity += transform.forward * appliedAccel * dt;
+            currentVelocity -= currentVelocity * currentDrag * dt;
 
-        currentVelocity += transform.forward * appliedAccel * dt;
-        currentVelocity -= currentVelocity * currentDrag * dt;
+            float distance = hit.distance - 0.5f; 
+            float heightError = hoverHeight - distance;
+            
+            currentVelocity += Vector3.down * gravity * dt;
+
+            float currentVerticalSpeed = Vector3.Dot(currentVelocity, hit.normal);
+
+            if (heightError > 0)
+            {
+                if (currentVerticalSpeed < 0)
+                {
+                    currentVelocity -= hit.normal * currentVerticalSpeed;
+                    currentVerticalSpeed = 0;
+                }
+
+                float targetVerticalSpeed = heightError * heightCorrectionSpeed;
+
+                if (currentVerticalSpeed < targetVerticalSpeed)
+                {
+                   currentVelocity += hit.normal * (targetVerticalSpeed - currentVerticalSpeed) * dt * 10f; 
+                }
+            }
+            else
+            {
+                if (currentVerticalSpeed > 0)
+                {
+                    currentVelocity -= hit.normal * currentVerticalSpeed * dt * 10f;
+                }
+            }
+        }
+        else
+        {
+            currentVelocity += Vector3.down * gravity * dt;
+        }
 
         rb.linearVelocity = currentVelocity;
     }
