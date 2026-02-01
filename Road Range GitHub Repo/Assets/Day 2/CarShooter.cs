@@ -52,10 +52,9 @@ public class CarShooter : MonoBehaviour
 
     void Update()
     {
-        if (Mouse.current != null)
-        {
-            IsAiming = Mouse.current.rightButton.isPressed;
-        }
+        IsAiming = false;
+        if (Mouse.current != null && Mouse.current.rightButton.isPressed) IsAiming = true;
+        if (Gamepad.current != null && Gamepad.current.leftShoulder.isPressed) IsAiming = true;
 
         if (crosshairUI != null)
         {
@@ -74,10 +73,12 @@ public class CarShooter : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            Vector2 mouseDelta = Mouse.current.delta.ReadValue();
+            Vector2 lookInput = Vector2.zero;
+            if (Mouse.current != null) lookInput += Mouse.current.delta.ReadValue();
+            if (Gamepad.current != null) lookInput += Gamepad.current.rightStick.ReadValue() * 30f;
         
-            currentYaw += mouseDelta.x * mouseSensitivity * 0.1f;
-            currentPitch -= mouseDelta.y * mouseSensitivity * 0.1f;
+            currentYaw += lookInput.x * mouseSensitivity * 0.1f;
+            currentPitch -= lookInput.y * mouseSensitivity * 0.1f;
             currentPitch = Mathf.Clamp(currentPitch, minPitch, maxPitch);
 
             float carBodyYaw = transform.eulerAngles.y;
@@ -89,7 +90,11 @@ public class CarShooter : MonoBehaviour
 
             if (firePoint != null) firePoint.rotation = AimRotation;
 
-            if (Mouse.current.leftButton.isPressed && Time.time >= nextFireTime)
+            bool firePressed = false;
+            if (Mouse.current != null && Mouse.current.leftButton.isPressed) firePressed = true;
+            if (Gamepad.current != null && Gamepad.current.rightTrigger.isPressed) firePressed = true;
+
+            if (firePressed && Time.time >= nextFireTime)
             {
                 if (energySystem == null || energySystem.TryConsume(energySystem.shootCost))
                 {

@@ -24,7 +24,8 @@ public class Car2 : MonoBehaviour
 
     [Header("Boost")]
     public float boostMultiplier = 2.0f;
-
+    public float boostDecayRate = 1.0f;
+    public float driftBoostDecayMult = 3.0f;
 
     [Header("Height")]
     public float hoverHeight = 1.5f;
@@ -46,6 +47,7 @@ public class Car2 : MonoBehaviour
     private bool isGrounded;
     
     private float driftWeight;
+    private float boostState;
 
     public float SteerInput => moveInput.x; 
     
@@ -95,9 +97,28 @@ public class Car2 : MonoBehaviour
             isDriftInput = kb.spaceKey.isPressed;
         }
 
+        if (Gamepad.current != null)
+        {
+            var gp = Gamepad.current;
+            Vector2 stick = gp.leftStick.ReadValue();
+            if (stick.sqrMagnitude > 0.01f)
+            {
+                moveInput.x = stick.x;
+                moveInput.y = stick.y > 0 ? 1f : stick.y;
+            }
+            if (gp.leftTrigger.isPressed)
+            {
+                isDriftInput = true;
+            }
+        }
+
         bool aimActive = carShooter != null && carShooter.IsAiming;
 
-        if (Mouse.current != null && !aimActive && !isDriftInput && Mouse.current.leftButton.isPressed)
+        bool boostRequested = false;
+        if (Mouse.current != null && Mouse.current.leftButton.isPressed) boostRequested = true;
+        if (Gamepad.current != null && Gamepad.current.rightTrigger.isPressed) boostRequested = true;
+
+        if (boostRequested && !aimActive && !isDriftInput)
         {
             if (energySystem == null || energySystem.TryConsume(energySystem.boostCostPerSec * Time.deltaTime))
             {
@@ -172,10 +193,24 @@ public class Car2 : MonoBehaviour
             transform.Rotate(0, turnAmount, 0); 
         }
 
+        if (isBoosting)
+        {
+            boostState = Mathf.MoveTowards(boostState, 1f, dt * 5f);
+        }
+        else
+        {
+            float decay = boostDecayRate;
+            if (driftWeight > 0.1f) decay *= driftBoostDecayMult;
+            boostState = Mathf.Lerp(boostState, 0f, decay * dt);
+        }
+
+        float smoothBoost = Mathf.SmoothStep(0f, 1f, boostState);
+        float currentBoostMult = Mathf.Lerp(1f, boostMultiplier, smoothBoost);
+
         Vector3 currentVelocity = rb.linearVelocity;
         
         float appliedAccel = (moveInput.y != 0) ? currentAcceleration * moveInput.y : 0;
-        if (isBoosting) appliedAccel *= boostMultiplier;
+        appliedAccel *= currentBoostMult;
         
         if (isGrounded)
         {

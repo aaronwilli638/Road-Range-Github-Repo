@@ -2453,8 +2453,6 @@ MonoBehaviour:
   shooterDrag: 3
   transitionSpeed: 5
   boostMultiplier: 1.7
-  boostDecayRate: 2.5
-  driftBoostDecayMult: 3
   hoverHeight: 1
   heightCorrectionSpeed: 10
   slopeAlignSpeed: 10
