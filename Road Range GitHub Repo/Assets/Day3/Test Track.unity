@@ -932,9 +932,9 @@ MonoBehaviour:
   target: {fileID: 982390243}
   targetRb: {fileID: 982390245}
   shooterCameraMount: {fileID: 808761485}
-  offset: {x: 0, y: 4.5, z: -3}
-  recenteringMultiplier: 2
-  transitionSpeed: 5
+  offset: {x: 0, y: 4.5, z: -2.5}
+  recenteringMultiplier: 1.2
+  transitionSpeed: 10
   shootingTransitionSpeed: 5
   driveLateralSpeed: 15
   driveLongitudinalSpeed: 60
@@ -944,6 +944,10 @@ MonoBehaviour:
   driftLongitudinalSpeed: 20
   driftVerticalSpeed: 10
   driftRotationSpeed: 15
+  minFov: 50
+  maxFov: 90
+  fovSpeedCap: 500
+  fovTransitionSpeed: 20
 --- !u!1 &348973110
 GameObject:
   m_ObjectHideFlags: 0
@@ -2436,16 +2440,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5647b8115d928944abe31f76011e7f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Car2
-  driveAcceleration: 400
-  driveTurnSpeed: 80
-  driveDrag: 2.9
+  driveAcceleration: 500
+  driveTurnSpeed: 60
+  driveDrag: 3
   driftAcceleration: 30
   driftTurnSpeed: 200
-  driftDrag: 1
-  shooterAcceleration: 400
+  driftDrag: 0.7
+  driftEaseInSpeed: 1.5
+  driftEaseOutSpeed: 1
+  shooterAcceleration: 500
   shooterTurnSpeed: 40
   shooterDrag: 3
-  boostMultiplier: 1.7
+  boostMultiplier: 1.5
   transitionSpeed: 5
   hoverHeight: 1
   heightCorrectionSpeed: 10
@@ -2498,7 +2504,7 @@ MonoBehaviour:
   energyText: {fileID: 2035664918}
   maxEnergy: 100
   currentEnergy: 0
-  boostCostPerSec: 50
+  boostCostPerSec: 100
   shootCost: 5
   driftRefillPerMeter: 1
   passiveRegen: 1
@@ -3888,7 +3894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 613324021502452168, guid: 2c1a9265e4c3e974bb3755d7403c10e2, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 1000
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 1404662986814913305, guid: 2c1a9265e4c3e974bb3755d7403c10e2, type: 3}
       propertyPath: m_Name
@@ -5228,6 +5234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34fa980a2a2be984ba06d8f35286829c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DriftEffectActivator
+  carController: {fileID: 982390246}
 --- !u!1 &2079385042
 GameObject:
   m_ObjectHideFlags: 0

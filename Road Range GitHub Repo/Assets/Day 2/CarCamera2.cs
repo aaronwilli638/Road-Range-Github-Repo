@@ -1,10 +1,11 @@
 using UnityEngine;
+
 public class CarCamera2 : MonoBehaviour
 {
     [Header("Targets")]
-    public Transform target; 
+    public Transform target;
     public Rigidbody targetRb;
-    public Transform shooterCameraMount; 
+    public Transform shooterCameraMount;
 
     [Header("Settings")]
     public Vector3 offset = new Vector3(0, 5, -10);
@@ -13,31 +14,40 @@ public class CarCamera2 : MonoBehaviour
 
     [Header("Shooting Settings")]
     public float shootingTransitionSpeed = 10f;
-    
+
     [Header("Driving Follow Intensity")]
-    public float driveLateralSpeed = 15f; 
+    public float driveLateralSpeed = 15f;
     public float driveLongitudinalSpeed = 40f;
     public float driveVerticalSpeed = 20f;
     public float driveRotationSpeed = 15f;
 
     [Header("Drifting Follow Intensity")]
-    public float driftLateralSpeed = 5f; 
+    public float driftLateralSpeed = 5f;
     public float driftLongitudinalSpeed = 20f;
     public float driftVerticalSpeed = 10f;
     public float driftRotationSpeed = 5f;
 
+    [Header("FOV Settings")]
+    public float minFov = 60f;
+    public float maxFov = 90f;
+    public float fovSpeedCap = 80f;
+    public float fovTransitionSpeed = 2f;
+
     private Car2 carController;
     private CarShooter carShooter;
+    private Camera cam;
 
     private float currentLateralSpeed;
     private float currentLongitudinalSpeed;
     private float currentVerticalSpeed;
     private float currentRotationSpeed;
-    
-    private float shootBlend = 0f; 
+
+    private float shootBlend = 0f;
 
     void Start()
     {
+        cam = GetComponent<Camera>();
+
         if (target != null)
         {
             carController = target.GetComponent<Car2>();
@@ -54,14 +64,24 @@ public class CarCamera2 : MonoBehaviour
     {
         if (!target) return;
 
-        bool isDrifting = carController != null && carController.IsDrifting;
+        if (cam != null && targetRb != null)
+        {
+            float speed = targetRb.linearVelocity.magnitude;
+            float t = Mathf.Clamp01(speed / fovSpeedCap);
+            t = Mathf.SmoothStep(0f, 1f, t);
+            
+            float targetFov = Mathf.Lerp(minFov, maxFov, t);
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFov, fovTransitionSpeed * Time.fixedDeltaTime);
+        }
 
-        float targetLateral = isDrifting ? driftLateralSpeed : driveLateralSpeed;
-        float targetLongitudinal = isDrifting ? driftLongitudinalSpeed : driveLongitudinalSpeed;
-        float targetVertical = isDrifting ? driftVerticalSpeed : driveVerticalSpeed;
-        float targetRotationSpeed = isDrifting ? driftRotationSpeed : driveRotationSpeed;
+        float driftFactor = carController != null ? carController.DriftFactor : 0f;
 
-        if (carController != null && Mathf.Abs(carController.SteerInput) <= 0.1f) 
+        float targetLateral = Mathf.Lerp(driveLateralSpeed, driftLateralSpeed, driftFactor);
+        float targetLongitudinal = Mathf.Lerp(driveLongitudinalSpeed, driftLongitudinalSpeed, driftFactor);
+        float targetVertical = Mathf.Lerp(driveVerticalSpeed, driftVerticalSpeed, driftFactor);
+        float targetRotationSpeed = Mathf.Lerp(driveRotationSpeed, driftRotationSpeed, driftFactor);
+
+        if (carController != null && Mathf.Abs(carController.SteerInput) <= 0.1f)
         {
             targetLateral *= recenteringMultiplier;
             targetRotationSpeed *= recenteringMultiplier;
@@ -86,19 +106,19 @@ public class CarCamera2 : MonoBehaviour
         if (targetRb != null && targetRb.linearVelocity.magnitude > 2f)
         {
             Vector3 velocityHeading = targetRb.linearVelocity.normalized;
-            Vector3 facingHeading = target.forward; 
-            lookDirection = Vector3.Lerp(facingHeading, velocityHeading, 0.3f); 
+            Vector3 facingHeading = target.forward;
+            lookDirection = Vector3.Lerp(facingHeading, velocityHeading, 0.3f);
         }
         else
         {
             lookDirection = target.forward;
         }
-        
+
         Quaternion driveRot = Quaternion.LookRotation(lookDirection, Vector3.up);
         driveRot = Quaternion.Slerp(transform.rotation, driveRot, currentRotationSpeed * Time.fixedDeltaTime);
 
         bool isShooting = carShooter != null && carShooter.IsAiming && shooterCameraMount != null;
-        
+
         shootBlend = Mathf.MoveTowards(shootBlend, isShooting ? 1f : 0f, shootingTransitionSpeed * Time.fixedDeltaTime);
 
         if (shootBlend <= 0.001f)
