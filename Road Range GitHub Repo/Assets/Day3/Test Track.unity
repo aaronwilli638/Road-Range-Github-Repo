@@ -2506,7 +2506,7 @@ MonoBehaviour:
   energyText: {fileID: 2035664918}
   maxEnergy: 100
   currentEnergy: 0
-  boostCostPerSec: 200
+  boostCostPerSec: 100
   shootCost: 5
   driftRefillPerMeter: 1
   passiveRegen: 1
