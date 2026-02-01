@@ -118,7 +118,7 @@ public class Car2 : MonoBehaviour
         if (Mouse.current != null && Mouse.current.leftButton.isPressed) boostRequested = true;
         if (Gamepad.current != null && Gamepad.current.rightTrigger.isPressed) boostRequested = true;
 
-        if (boostRequested && !aimActive && !isDriftInput)
+        if (boostRequested && !aimActive && !isDriftInput && isGrounded)
         {
             if (energySystem == null || energySystem.TryConsume(energySystem.boostCostPerSec * Time.deltaTime))
             {
