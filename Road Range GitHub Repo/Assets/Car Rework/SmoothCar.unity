@@ -452,7 +452,7 @@ MonoBehaviour:
   currentEnergy: 0
   boostCostPerSec: 60
   shootCost: 15
-  driftRefillPerMeter: 0.2
+  driftRefillPerMeter: 0.4
   passiveRegen: 1
   passiveRegenRate: 10
   regenDelay: 1
