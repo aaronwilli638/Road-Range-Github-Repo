@@ -17,6 +17,7 @@ public class SmoothCar : MonoBehaviour
     public float driftEaseOutSpeed = 2f;
 
     [Header("Boost")]
+    public float boostLeniency = 0.2f;
     public float boostMultiplier = 2.0f;
     public float boostDecayRate = 1.0f;
     public float driftBoostDecayMult = 3.0f;
@@ -34,7 +35,8 @@ public class SmoothCar : MonoBehaviour
 
     private Rigidbody rb;
     private EnergySystem energySystem;
-
+    private float boostLeniencyTimer;
+    public bool IsBoostingBuffered => isBoosting || boostLeniencyTimer > 0f;
     private Vector2 moveInput;
     private bool isBoosting;
     private bool isDriftInput;
@@ -47,7 +49,7 @@ public class SmoothCar : MonoBehaviour
     public bool IsDrifting => driftWeight > 0f;
     public bool IsGrounded => isGrounded;
     public float DriftFactor => Mathf.SmoothStep(0f, 1f, driftWeight);
-
+    public bool IsBoosting => isBoosting;
     private float currentAcceleration;
     private float currentTurnSpeed;
     private float currentDrag;
@@ -114,6 +116,14 @@ public class SmoothCar : MonoBehaviour
         else
         {
             isBoosting = false;
+        }
+        if (isBoosting)
+        {
+            boostLeniencyTimer = boostLeniency;
+        }
+        else
+        {
+            boostLeniencyTimer -= Time.deltaTime;
         }
     }
 

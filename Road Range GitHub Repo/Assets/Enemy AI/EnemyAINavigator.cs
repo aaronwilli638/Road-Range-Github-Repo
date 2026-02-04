@@ -15,6 +15,8 @@ public class EnemyAINavigator : MonoBehaviour
 
     [Header("Pathfinding")]
     public float lookAheadDistance = 10f;
+    public float wallAvoidanceRadius = 1.5f;
+    public float wallAvoidanceStrength = 5f;
     public float separationStrength = 5f;
     public float separationRadius = 6f;
     
@@ -90,9 +92,9 @@ public class EnemyAINavigator : MonoBehaviour
             dirToTarget += separationSum.normalized * separationStrength;
         }
 
-        if (Physics.Raycast(transform.position, car.Forward, out RaycastHit hit, lookAheadDistance, obstacleMask))
+        if (Physics.SphereCast(transform.position, wallAvoidanceRadius, car.Forward, out RaycastHit hit, lookAheadDistance, obstacleMask))
         {
-            dirToTarget += Vector3.Reflect(car.Forward, hit.normal) * 2f;
+            dirToTarget += Vector3.Reflect(car.Forward, hit.normal) * wallAvoidanceStrength;
         }
 
         dirToTarget.Normalize();

@@ -61,12 +61,12 @@ public class EnemyMasterTarget : MonoBehaviour
         Vector3 origin = transform.position + Vector3.up;
 
         if (Physics.Raycast(origin, transform.right, out hit, maxScanDistance, wallLayer))
-            CurrentSafeRight = hit.distance - wallPadding;
+            CurrentSafeRight = Mathf.Max(0f, hit.distance - wallPadding);
         else
             CurrentSafeRight = maxScanDistance;
 
         if (Physics.Raycast(origin, -transform.right, out hit, maxScanDistance, wallLayer))
-            CurrentSafeLeft = -(hit.distance - wallPadding);
+            CurrentSafeLeft = -Mathf.Max(0f, hit.distance - wallPadding);
         else
             CurrentSafeLeft = -maxScanDistance;
         

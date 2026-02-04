@@ -3,20 +3,36 @@ using UnityEngine;
 public class DestroyOnContact : MonoBehaviour
 {
     [SerializeField] private LayerMask targetLayer;
+    [SerializeField] private LayerMask playerLayer;
     [SerializeField] private GameObject deathFxPrefab;
     [SerializeField] private float fxLifetime = 2f;
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (((1 << collision.gameObject.layer) & playerLayer) != 0)
+        {
+            SmoothCar player = collision.gameObject.GetComponent<SmoothCar>();
+            if (player != null && player.IsBoostingBuffered)
+            {
+                TriggerDestruction();
+            }
+            return;
+        }
+
         if (((1 << collision.gameObject.layer) & targetLayer) != 0)
         {
-            if (deathFxPrefab != null)
-            {
-                GameObject fx = Instantiate(deathFxPrefab, transform.position, Quaternion.identity);
-                Destroy(fx, fxLifetime);
-            }
-
-            Destroy(gameObject);
+            TriggerDestruction();
         }
+    }
+
+    private void TriggerDestruction()
+    {
+        if (deathFxPrefab != null)
+        {
+            GameObject fx = Instantiate(deathFxPrefab, transform.position, Quaternion.identity);
+            Destroy(fx, fxLifetime);
+        }
+
+        Destroy(gameObject);
     }
 }
