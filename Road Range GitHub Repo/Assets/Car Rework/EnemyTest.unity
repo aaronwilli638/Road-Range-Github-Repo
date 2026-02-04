@@ -835,9 +835,9 @@ MonoBehaviour:
   playerReference: {fileID: 50738990}
   speedMultiplier: 1
   steerMultiplier: 1.5
-  hoverHeight: 1
-  springStrength: 100
-  springDamper: 20
+  hoverHeight: 2
+  hoverDamping: 10
+  rotationSmoothing: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -1102,9 +1102,9 @@ MonoBehaviour:
   playerReference: {fileID: 50738990}
   speedMultiplier: 1
   steerMultiplier: 1.5
-  hoverHeight: 1
-  springStrength: 100
-  springDamper: 20
+  hoverHeight: 2
+  hoverDamping: 10
+  rotationSmoothing: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -2580,9 +2580,9 @@ MonoBehaviour:
   playerReference: {fileID: 50738990}
   speedMultiplier: 1
   steerMultiplier: 1.5
-  hoverHeight: 1
-  springStrength: 100
-  springDamper: 20
+  hoverHeight: 2
+  hoverDamping: 10
+  rotationSmoothing: 5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128

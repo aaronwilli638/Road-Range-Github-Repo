@@ -10,8 +10,8 @@ public class EnemyCarController : MonoBehaviour
 
     [Header("Hover Physics")]
     public float hoverHeight = 2.0f;
-    public float springStrength = 200f;
-    public float springDamper = 10f;
+    public float hoverDamping = 10f;
+    public float rotationSmoothing = 5f;
     public LayerMask groundLayer;
 
     private Rigidbody rb;
@@ -60,20 +60,15 @@ public class EnemyCarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Ray ray = new Ray(transform.position, Vector3.down);
-        if (Physics.Raycast(ray, out RaycastHit hit, hoverHeight + 2f, groundLayer))
+        Ray ray = new Ray(transform.position, -transform.up);
+        if (Physics.Raycast(ray, out RaycastHit hit, hoverHeight + 5f, groundLayer))
         {
-            Vector3 vel = rb.linearVelocity;
-            Vector3 rayDir = Vector3.down;
-            
-            float rayDirVel = Vector3.Dot(rayDir, vel);
-            float x = hit.distance - hoverHeight;
-            float springForce = (x * springStrength) - (rayDirVel * springDamper);
-
-            rb.AddForce(Vector3.up * springForce);
+            Vector3 targetPosition = hit.point + (hit.normal * hoverHeight);
+            Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetPosition, Time.fixedDeltaTime * hoverDamping);
+            rb.MovePosition(smoothedPosition);
 
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-            rb.MoveRotation(Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * 10f));
+            rb.MoveRotation(Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * rotationSmoothing));
         }
         else
         {
