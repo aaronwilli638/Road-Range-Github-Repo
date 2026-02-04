@@ -16,6 +16,7 @@ public class EnemyAINavigator : MonoBehaviour
     [Header("Pathfinding")]
     public float lookAheadDistance = 10f;
     public float separationStrength = 5f;
+    public float separationRadius = 6f;
     
     [Header("Layers")]
     public LayerMask obstacleMask;
@@ -44,14 +45,14 @@ public class EnemyAINavigator : MonoBehaviour
 
         if (distAhead > 0)
         {
-            transform.position -= masterFwd * distAhead;
+            rb.MovePosition(rb.position - masterFwd * distAhead);
             
-            float carFwdSpeed = Vector3.Dot(rb.linearVelocity, masterFwd);
+            float currentFwdSpeed = Vector3.Dot(rb.linearVelocity, masterFwd);
             float targetFwdSpeed = masterTarget.CurrentSpeed;
             
-            if (carFwdSpeed > targetFwdSpeed)
+            if (currentFwdSpeed > targetFwdSpeed)
             {
-                rb.linearVelocity -= masterFwd * (carFwdSpeed - targetFwdSpeed);
+                rb.linearVelocity -= masterFwd * (currentFwdSpeed - targetFwdSpeed);
             }
         }
 
@@ -62,8 +63,10 @@ public class EnemyAINavigator : MonoBehaviour
 
         Vector3 dirToTarget = (formationPos - transform.position).normalized;
 
-        Collider[] neighbors = Physics.OverlapSphere(transform.position, 10f, racerMask);
-        Vector3 separation = Vector3.zero;
+        Collider[] neighbors = Physics.OverlapSphere(transform.position, separationRadius, racerMask);
+        Vector3 separationSum = Vector3.zero;
+        int count = 0;
+        
         foreach (var n in neighbors)
         {
             if (n.transform.root == transform.root) continue;
@@ -71,16 +74,21 @@ public class EnemyAINavigator : MonoBehaviour
             Vector3 push = transform.position - n.transform.position;
             float sqrDist = push.sqrMagnitude;
             
-            separation += push.normalized / (sqrDist + 0.1f);
+            separationSum += push.normalized / (sqrDist + 0.1f);
+            count++;
 
-            if (sqrDist < 9f)
+            if (sqrDist < (separationRadius * separationRadius) * 0.5f)
             {
                 float dist = Mathf.Sqrt(sqrDist);
-                float repelStrength = (3f - dist) * 2f;
+                float repelStrength = (separationRadius - dist) * 0.5f;
                 rb.linearVelocity += push.normalized * repelStrength * Time.fixedDeltaTime;
             }
         }
-        dirToTarget += separation * separationStrength;
+
+        if (count > 0)
+        {
+            dirToTarget += separationSum.normalized * separationStrength;
+        }
 
         if (Physics.Raycast(transform.position, car.Forward, out RaycastHit hit, lookAheadDistance, obstacleMask))
         {
@@ -139,5 +147,11 @@ public class EnemyAINavigator : MonoBehaviour
         {
             targetXOffset = Random.Range(masterTarget.CurrentSafeLeft, masterTarget.CurrentSafeRight);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1f, 0.5f, 0f, 0.5f);
+        Gizmos.DrawWireSphere(transform.position, separationRadius);
     }
 }
