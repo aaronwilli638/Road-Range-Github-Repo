@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0caeb02dbdd5741ac63d338ce7f4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SmoothCar
-  driveAcceleration: 380
+  driveAcceleration: 300
   driveTurnSpeed: 100
   driveDrag: 3
   driftAcceleration: 30
@@ -665,7 +665,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  deathFxPrefab: {fileID: 501809968414842987, guid: 88070989f43dd7a408a95ed7b13cc939, type: 3}
+  deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
   fxLifetime: 5
 --- !u!114 &151787702
 MonoBehaviour:
@@ -1075,7 +1075,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  deathFxPrefab: {fileID: 501809968414842987, guid: 88070989f43dd7a408a95ed7b13cc939, type: 3}
+  deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
   fxLifetime: 5
 --- !u!1 &196836848
 GameObject:
@@ -1444,7 +1444,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  deathFxPrefab: {fileID: 501809968414842987, guid: 88070989f43dd7a408a95ed7b13cc939, type: 3}
+  deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
   fxLifetime: 5
 --- !u!114 &492648857
 MonoBehaviour:
@@ -2342,7 +2342,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  deathFxPrefab: {fileID: 501809968414842987, guid: 88070989f43dd7a408a95ed7b13cc939, type: 3}
+  deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
   fxLifetime: 5
 --- !u!114 &1412858645
 MonoBehaviour:
@@ -2624,7 +2624,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 256
-  maxScanDistance: 100
+  maxScanDistance: 700
   wallPadding: 20
 --- !u!1001 &1639257756
 PrefabInstance:
@@ -3076,7 +3076,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
-  deathFxPrefab: {fileID: 501809968414842987, guid: 88070989f43dd7a408a95ed7b13cc939, type: 3}
+  deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
   fxLifetime: 5
 --- !u!114 &2105281347
 MonoBehaviour:

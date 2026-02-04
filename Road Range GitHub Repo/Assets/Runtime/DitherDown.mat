@@ -44,7 +44,7 @@ Material:
     - _ColorResolution: 36
     - _DitherAmount: 0.02
     - _DitherSubtract: 0.5
-    - _ScreenScale: 0.5
+    - _ScreenScale: 0.33
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
