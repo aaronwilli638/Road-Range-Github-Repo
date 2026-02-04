@@ -22,6 +22,7 @@ public class EnemyAINavigator : MonoBehaviour
     public LayerMask racerMask;
 
     private EnemyCarController car;
+    private Rigidbody rb;
     private float targetZOffset;
     private float targetXOffset;
     private float offsetTimer;
@@ -29,6 +30,7 @@ public class EnemyAINavigator : MonoBehaviour
     private void Start()
     {
         car = GetComponent<EnemyCarController>();
+        rb = GetComponent<Rigidbody>();
         RandomizeOffsets();
     }
 
@@ -37,6 +39,22 @@ public class EnemyAINavigator : MonoBehaviour
         if (masterTarget == null) return;
 
         Vector3 masterFwd = masterTarget.transform.forward;
+        Vector3 distVector = transform.position - masterTarget.transform.position;
+        float distAhead = Vector3.Dot(distVector, masterFwd);
+
+        if (distAhead > 0)
+        {
+            transform.position -= masterFwd * distAhead;
+            
+            float carFwdSpeed = Vector3.Dot(rb.linearVelocity, masterFwd);
+            float targetFwdSpeed = masterTarget.CurrentSpeed;
+            
+            if (carFwdSpeed > targetFwdSpeed)
+            {
+                rb.linearVelocity -= masterFwd * (carFwdSpeed - targetFwdSpeed);
+            }
+        }
+
         Vector3 masterRight = masterTarget.transform.right;
         
         float clampedX = Mathf.Clamp(targetXOffset, masterTarget.CurrentSafeLeft, masterTarget.CurrentSafeRight);
@@ -49,8 +67,18 @@ public class EnemyAINavigator : MonoBehaviour
         foreach (var n in neighbors)
         {
             if (n.transform.root == transform.root) continue;
+            
             Vector3 push = transform.position - n.transform.position;
-            separation += push.normalized / (push.sqrMagnitude + 0.1f);
+            float sqrDist = push.sqrMagnitude;
+            
+            separation += push.normalized / (sqrDist + 0.1f);
+
+            if (sqrDist < 9f)
+            {
+                float dist = Mathf.Sqrt(sqrDist);
+                float repelStrength = (3f - dist) * 2f;
+                rb.linearVelocity += push.normalized * repelStrength * Time.fixedDeltaTime;
+            }
         }
         dirToTarget += separation * separationStrength;
 
