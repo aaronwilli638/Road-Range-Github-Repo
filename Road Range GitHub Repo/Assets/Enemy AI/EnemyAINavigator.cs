@@ -10,7 +10,7 @@ public class EnemyAINavigator : MonoBehaviour
     public float zOffsetMax = 15f;
 
     [Header("Speed Logic")]
-    public float catchUpSpeedMultiplier = 1.1f;
+    public float catchUpSpeedMultiplier = 1.2f;
     public float regularSpeedMultiplier = 0.7f;
 
     [Header("Pathfinding")]
@@ -134,6 +134,12 @@ public class EnemyAINavigator : MonoBehaviour
 
         car.SetInputs(steerInput, throttleInput);
 
+        if (targetSpeed > car.MaxSpeed && car.CurrentSpeed < targetSpeed && throttleInput > 0.9f)
+        {
+            float speedDeficit = targetSpeed - car.CurrentSpeed;
+            rb.AddForce(car.Forward * speedDeficit, ForceMode.Acceleration);
+        }
+
         offsetTimer += Time.fixedDeltaTime;
         if (offsetTimer > 3f)
         {
@@ -149,11 +155,5 @@ public class EnemyAINavigator : MonoBehaviour
         {
             targetXOffset = Random.Range(masterTarget.CurrentSafeLeft, masterTarget.CurrentSafeRight);
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(1f, 0.5f, 0f, 0.5f);
-        Gizmos.DrawWireSphere(transform.position, separationRadius);
     }
 }

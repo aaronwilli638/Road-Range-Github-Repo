@@ -4,8 +4,6 @@ using UnityEngine;
 public class EnemyCarController : MonoBehaviour
 {
     public SmoothCar playerReference;
-    
-    public float speedMultiplier = 0.6f;
     public float steerMultiplier = 1.0f;
 
     [Header("Hover Physics")]
@@ -48,7 +46,7 @@ public class EnemyCarController : MonoBehaviour
         {
             rb.linearDamping = playerReference.driveDrag;
             driveTurnSpeed = playerReference.driveTurnSpeed * steerMultiplier;
-            driveAcceleration = playerReference.driveAcceleration * speedMultiplier;
+            driveAcceleration = playerReference.driveAcceleration;
         }
     }
 
