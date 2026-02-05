@@ -9,6 +9,8 @@ public class EnemyMasterTarget : MonoBehaviour
     public event Action OnWaypointReached;
     
     [Header("Movement")]
+    public float targetLeadDistance = 25f;
+    public float minSpeed = 10f;
     [Range(0.1f, 1.5f)]
     public float speedMultiplier = 0.6f; 
 
@@ -36,7 +38,13 @@ public class EnemyMasterTarget : MonoBehaviour
         if (waypoints.Count == 0 || playerReference == null) return;
 
         float playerBaseSpeed = playerReference.driveAcceleration / playerReference.driveDrag;
-        currentSpeed = playerBaseSpeed * speedMultiplier;
+
+        Vector3 toMe = transform.position - playerReference.transform.position;
+        float currentLead = Vector3.Dot(toMe, transform.forward);
+        float distanceLogic = (targetLeadDistance - currentLead) * 0.1f;
+
+        float desiredSpeed = playerBaseSpeed * (speedMultiplier + distanceLogic);
+        currentSpeed = Mathf.Max(minSpeed, desiredSpeed);
 
         Vector3 dest = waypoints[currentIndex].position;
         Vector3 pathDir = (dest - transform.position).normalized;
