@@ -5,69 +5,67 @@ public class ShredderController : MonoBehaviour
 {
     public EnemyMasterTarget target;
     public float followDistance = 15f;
-    public float catchUpSpeedMultiplier = 1.5f;
+    public float rotationSpeed = 10f;
 
     private List<Vector3> breadcrumbs = new List<Vector3>();
-    private Vector3 lastRecordedPosition;
+    private Vector3 startPosition;
+    private Quaternion startRotation;
 
-    private void Start()
+    private void OnEnable()
     {
+        startPosition = transform.position;
+        startRotation = transform.rotation;
+        
         if (target != null)
         {
-            lastRecordedPosition = target.transform.position;
-            breadcrumbs.Add(lastRecordedPosition);
+            breadcrumbs.Clear();
+            breadcrumbs.Add(target.transform.position);
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (target == null) return;
 
-        float distToTarget = Vector3.Distance(lastRecordedPosition, target.transform.position);
-        if (distToTarget > 0.1f)
+        Vector3 targetPos = target.transform.position;
+        if (breadcrumbs.Count == 0 || Vector3.Distance(breadcrumbs[breadcrumbs.Count - 1], targetPos) > 0.1f)
         {
-            breadcrumbs.Add(target.transform.position);
-            lastRecordedPosition = target.transform.position;
+            breadcrumbs.Add(targetPos);
         }
 
-        float currentPathLength = 0f;
-        
-        if (breadcrumbs.Count > 0)
-        {
-            currentPathLength += Vector3.Distance(transform.position, breadcrumbs[0]);
-        }
-        
-        for (int i = 0; i < breadcrumbs.Count - 1; i++)
-        {
-            currentPathLength += Vector3.Distance(breadcrumbs[i], breadcrumbs[i + 1]);
-        }
-        
-        if (breadcrumbs.Count > 0)
-        {
-             currentPathLength += Vector3.Distance(breadcrumbs[breadcrumbs.Count - 1], target.transform.position);
-        }
-        else
-        {
-             currentPathLength += Vector3.Distance(transform.position, target.transform.position);
-        }
+        float distanceTraveled = 0f;
 
-        if (currentPathLength > followDistance && breadcrumbs.Count > 0)
+        for (int i = breadcrumbs.Count - 1; i > 0; i--)
         {
-            Vector3 destination = breadcrumbs[0];
-            Vector3 direction = (destination - transform.position).normalized;
+            Vector3 p1 = breadcrumbs[i];
+            Vector3 p2 = breadcrumbs[i - 1];
+            float segmentLength = Vector3.Distance(p1, p2);
 
-            if (direction != Vector3.zero)
-                transform.rotation = Quaternion.LookRotation(direction);
-
-            float speed = target.CurrentSpeed;
-            if (currentPathLength > followDistance * 1.2f) speed *= catchUpSpeedMultiplier;
-
-            transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
-
-            if (Vector3.Distance(transform.position, destination) < 0.1f)
+            if (distanceTraveled + segmentLength >= followDistance)
             {
-                breadcrumbs.RemoveAt(0);
+                float remaining = followDistance - distanceTraveled;
+                float t = remaining / segmentLength;
+
+                Vector3 desiredPosition = Vector3.Lerp(p1, p2, t);
+                transform.position = desiredPosition;
+
+                Vector3 direction = (p1 - p2).normalized;
+                if (direction != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotationSpeed);
+                }
+
+                if (i > 1)
+                {
+                    breadcrumbs.RemoveRange(0, i - 1);
+                }
+                return;
             }
+
+            distanceTraveled += segmentLength;
         }
+
+        transform.position = startPosition;
+        transform.rotation = startRotation;
     }
 }
