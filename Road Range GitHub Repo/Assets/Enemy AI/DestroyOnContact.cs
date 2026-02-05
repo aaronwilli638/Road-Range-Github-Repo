@@ -5,34 +5,39 @@ public class DestroyOnContact : MonoBehaviour
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private GameObject deathFxPrefab;
+    [SerializeField] private SmoothShakeFree.SmoothShake cameraShake;
     [SerializeField] private float fxLifetime = 2f;
+    [SerializeField] private float stopDuration = 0.1f;
 
     private void OnCollisionEnter(Collision collision)
     {
         if (((1 << collision.gameObject.layer) & playerLayer) != 0)
         {
-            SmoothCar player = collision.gameObject.GetComponent<SmoothCar>();
-            if (player != null && player.IsBoostingBuffered)
+            if (collision.gameObject.GetComponent<SmoothCar>().IsBoostingBuffered)
             {
-                TriggerDestruction();
+                SpawnEffects();
+                if (cameraShake != null) cameraShake.StartShake();
+                TimeManager.Instance.RequestFreeze(stopDuration);
+                gameObject.SetActive(false);
             }
-            return;
         }
-
-        if (((1 << collision.gameObject.layer) & targetLayer) != 0)
+        else if (((1 << collision.gameObject.layer) & targetLayer) != 0)
         {
-            TriggerDestruction();
+            SpawnEffects();
+            gameObject.SetActive(false);
         }
     }
 
-    private void TriggerDestruction()
+    private void SpawnEffects()
     {
-        if (deathFxPrefab != null)
+        GameObject fx = Instantiate(deathFxPrefab, transform.position, Quaternion.identity);
+        
+        foreach (var p in fx.GetComponentsInChildren<ParticleSystem>())
         {
-            GameObject fx = Instantiate(deathFxPrefab, transform.position, Quaternion.identity);
-            Destroy(fx, fxLifetime);
+            var main = p.main;
+            main.useUnscaledTime = true;
         }
 
-        Destroy(gameObject);
+        Destroy(fx, fxLifetime);
     }
 }

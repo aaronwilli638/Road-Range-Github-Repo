@@ -600,7 +600,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &125388007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,7 +967,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &186831965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,7 +1248,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187542693}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 306.9, y: 2.97, z: 90.5}
   m_LocalScale: {x: 4, y: 2.6666667, z: 8}
   m_ConstrainProportionsScale: 1
@@ -1348,7 +1352,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!1 &196836848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1443,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &274796739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1605,7 +1613,7 @@ GameObject:
   - component: {fileID: 329255203}
   - component: {fileID: 329255202}
   - component: {fileID: 329255201}
-  - component: {fileID: 329255205}
+  - component: {fileID: 329255206}
   m_Layer: 3
   m_Name: Smooth Camera
   m_TagString: Untagged
@@ -1724,15 +1732,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 329255200}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.9848078, z: -0.17364816, w: 0}
-  m_LocalPosition: {x: 447.29, y: 8.7, z: 475.93}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 812917146}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 639215193}
   m_LocalEulerAnglesHint: {x: 20, y: 180, z: 0}
---- !u!114 &329255205
+--- !u!114 &329255206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1741,26 +1749,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 329255200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a20500fd31e1f47a171b02edc200c2, type: 3}
+  m_Script: {fileID: 11500000, guid: ca6c4a2ae5b653d4da56baa3a520f389, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SmoothCamera
-  target: {fileID: 50738988}
-  targetRb: {fileID: 50738987}
-  offset: {x: 0, y: 3, z: -13}
-  recenteringMultiplier: 1.2
-  transitionSpeed: 10
-  driveLateralStiffness: 15
-  driveLongitudinalStiffness: 40
-  driveVerticalStiffness: 20
-  driveRotationStiffness: 15
-  driftLateralStiffness: 7
-  driftLongitudinalStiffness: 20
-  driftVerticalStiffness: 10
-  driftRotationStiffness: 5
-  minFov: 50
-  maxFov: 90
-  fovSpeedCap: 500
-  fovTransitionSpeed: 20
+  m_EditorClassIdentifier: com.daburo.smoothshakefree::SmoothShakeFree.SmoothShake
+  timeSettings:
+    fadeValue: 0
+    enableOnStart: 0
+    constantShake: 0
+    fadeInDuration: 0
+    fadeInCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    holdDuration: 0
+    fadeOutDuration: 0.1
+    fadeOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0.016666412
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.9916687
+        value: 0.0070762634
+        inSlope: -0.052910782
+        outSlope: -0.052910782
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.09142005
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  preset: {fileID: 11400000, guid: d8a457f7dad96bb4aa3ede48b0e3fa98, type: 2}
+  positionShake:
+    noiseType: 1
+    amplitude: {x: 0.5, y: 0.5, z: 0.5}
+    frequency: {x: 0, y: 0, z: 0}
+  rotationShake:
+    noiseType: 0
+    amplitude: {x: 0, y: 0, z: 0}
+    frequency: {x: 0, y: 0, z: 0}
 --- !u!1 &368436839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1818,7 +1855,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &368436842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2143,7 +2182,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &440374268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2343,7 +2384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9276b367be50a4da1a0a8d32cf2d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimeScaleDebugger
-  currentTimeScale: 1
 --- !u!4 &487684409
 Transform:
   m_ObjectHideFlags: 0
@@ -2416,7 +2456,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &493510569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2629,7 +2671,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &593792864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2827,7 +2871,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &638475749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2998,6 +3044,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 82554089}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &639215192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 639215193}
+  - component: {fileID: 639215194}
+  m_Layer: 3
+  m_Name: CameraHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &639215193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639215192}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.9848078, z: -0.17364816, w: 0}
+  m_LocalPosition: {x: 447.29, y: 8.7, z: 475.93}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 329255204}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &639215194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639215192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a20500fd31e1f47a171b02edc200c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SmoothCamera
+  target: {fileID: 50738988}
+  targetRb: {fileID: 50738987}
+  offset: {x: 0, y: 3, z: -13}
+  recenteringMultiplier: 1.2
+  transitionSpeed: 10
+  driveLateralStiffness: 15
+  driveLongitudinalStiffness: 40
+  driveVerticalStiffness: 20
+  driveRotationStiffness: 15
+  driftLateralStiffness: 7
+  driftLongitudinalStiffness: 20
+  driftVerticalStiffness: 10
+  driftRotationStiffness: 5
+  minFov: 50
+  maxFov: 90
+  fovSpeedCap: 500
+  fovTransitionSpeed: 20
 --- !u!1 &703371982
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,7 +3148,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &703371984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3204,7 +3314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703371982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 341.7, y: 2.97, z: 90.5}
   m_LocalScale: {x: 4, y: 2.6666667, z: 8}
   m_ConstrainProportionsScale: 1
@@ -3642,7 +3752,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &972224382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4065,7 +4177,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1141576139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4278,7 +4392,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1199226914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4491,7 +4607,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1231639408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4735,7 +4853,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1368833427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5067,7 +5187,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1435312144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5351,7 +5473,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1519922789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5579,7 +5703,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1576151119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5777,7 +5903,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1594129886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6066,7 +6194,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1640953544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6390,7 +6520,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1725404105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6603,7 +6735,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1815901179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6992,7 +7126,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1865902265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7220,7 +7356,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1881520873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7433,7 +7571,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1939166633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7631,7 +7771,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1948037649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7844,7 +7986,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathFxPrefab: {fileID: 6905575901774918096, guid: e0fd10b6c663d4e41b146d8b29faf443, type: 3}
+  cameraShake: {fileID: 329255206}
   fxLifetime: 5
+  stopDuration: 0.2
 --- !u!114 &1990998713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8008,7 +8152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990998711}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 327.4, y: 2.97, z: 64.3}
   m_LocalScale: {x: 4, y: 2.6666667, z: 8}
   m_ConstrainProportionsScale: 1
@@ -8072,12 +8216,9 @@ SceneRoots:
   - {fileID: 1819176840}
   - {fileID: 1115006287}
   - {fileID: 1639257756}
-  - {fileID: 187542698}
-  - {fileID: 703371990}
-  - {fileID: 1990998719}
   - {fileID: 1492011112}
   - {fileID: 50738988}
-  - {fileID: 329255204}
+  - {fileID: 639215193}
   - {fileID: 2065788050}
   - {fileID: 1031195798}
   - {fileID: 36035069}
@@ -8086,3 +8227,6 @@ SceneRoots:
   - {fileID: 990230900}
   - {fileID: 487684409}
   - {fileID: 82554089}
+  - {fileID: 187542698}
+  - {fileID: 703371990}
+  - {fileID: 1990998719}
