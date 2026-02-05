@@ -37,8 +37,10 @@ public class SmoothCamera : MonoBehaviour
     private float currentVertTime;
     private float currentRotTime;
 
-    private float velX, velY, velZ; 
-    private Quaternion derivRot;
+    private Vector3 currentLocalVelocity; 
+    private Quaternion lastTargetRot;
+    
+    private Vector3 lastTargetPos;
 
     void Start()
     {
@@ -52,6 +54,8 @@ public class SmoothCamera : MonoBehaviour
             Vector3 targetPos = target.TransformPoint(offset);
             transform.position = targetPos;
             transform.rotation = target.rotation;
+            lastTargetRot = target.rotation;
+            lastTargetPos = target.position;
         }
     }
 
@@ -60,10 +64,14 @@ public class SmoothCamera : MonoBehaviour
         if (!target) return;
 
         float dt = Time.deltaTime;
+        if (dt < 0.0001f) return;
 
-        if (cam != null && targetRb != null)
+        Vector3 smoothVelocity = (target.position - lastTargetPos) / dt;
+        lastTargetPos = target.position;
+        float speed = smoothVelocity.magnitude;
+
+        if (cam != null)
         {
-            float speed = targetRb.linearVelocity.magnitude;
             float t = Mathf.Clamp01(speed / fovSpeedCap);
             t = Mathf.SmoothStep(0f, 1f, t);
             float targetFov = Mathf.Lerp(minFov, maxFov, t);
@@ -98,16 +106,20 @@ public class SmoothCamera : MonoBehaviour
         Vector3 currentLocalPos = target.InverseTransformPoint(transform.position);
         Vector3 targetLocalPos = target.InverseTransformPoint(targetWorldPos);
 
-        float newX = Mathf.SmoothDamp(currentLocalPos.x, targetLocalPos.x, ref velX, currentLatTime);
-        float newY = Mathf.SmoothDamp(currentLocalPos.y, targetLocalPos.y, ref velY, currentVertTime);
-        float newZ = Mathf.SmoothDamp(currentLocalPos.z, targetLocalPos.z, ref velZ, currentLongTime);
+        Quaternion deltaRot = Quaternion.Inverse(lastTargetRot) * target.rotation;
+        currentLocalVelocity = Quaternion.Inverse(deltaRot) * currentLocalVelocity;
+        lastTargetRot = target.rotation;
+
+        float newX = Mathf.SmoothDamp(currentLocalPos.x, targetLocalPos.x, ref currentLocalVelocity.x, currentLatTime);
+        float newY = Mathf.SmoothDamp(currentLocalPos.y, targetLocalPos.y, ref currentLocalVelocity.y, currentVertTime);
+        float newZ = Mathf.SmoothDamp(currentLocalPos.z, targetLocalPos.z, ref currentLocalVelocity.z, currentLongTime);
 
         transform.position = target.TransformPoint(new Vector3(newX, newY, newZ));
 
         Vector3 lookDirection;
-        if (targetRb != null && targetRb.linearVelocity.magnitude > 2f)
+        if (speed > 2f)
         {
-            Vector3 velocityHeading = targetRb.linearVelocity.normalized;
+            Vector3 velocityHeading = smoothVelocity.normalized;
             Vector3 facingHeading = target.forward;
             lookDirection = Vector3.Lerp(facingHeading, velocityHeading, 0.3f);
         }
@@ -117,21 +129,8 @@ public class SmoothCamera : MonoBehaviour
         }
 
         Quaternion targetRot = Quaternion.LookRotation(lookDirection, Vector3.up);
-        transform.rotation = SmoothDampQuaternion(transform.rotation, targetRot, ref derivRot, currentRotTime);
-    }
-
-    private Quaternion SmoothDampQuaternion(Quaternion current, Quaternion target, ref Quaternion deriv, float smoothTime)
-    {
-        if (Time.deltaTime < Mathf.Epsilon) return current;
-        if (Quaternion.Dot(current, target) < 0f) target = new Quaternion(-target.x, -target.y, -target.z, -target.w);
         
-        Vector4 result = new Vector4(
-            Mathf.SmoothDamp(current.x, target.x, ref deriv.x, smoothTime),
-            Mathf.SmoothDamp(current.y, target.y, ref deriv.y, smoothTime),
-            Mathf.SmoothDamp(current.z, target.z, ref deriv.z, smoothTime),
-            Mathf.SmoothDamp(current.w, target.w, ref deriv.w, smoothTime)
-        ).normalized;
-        
-        return new Quaternion(result.x, result.y, result.z, result.w);
+        float rotSpeed = 1f / Mathf.Max(0.01f, currentRotTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotSpeed * dt);
     }
 }
