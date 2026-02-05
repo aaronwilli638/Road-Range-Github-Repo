@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(EnemyCarController))]
 public class EnemyAINavigator : MonoBehaviour
@@ -23,6 +24,7 @@ public class EnemyAINavigator : MonoBehaviour
     [Header("Layers")]
     public LayerMask obstacleMask;
     public LayerMask racerMask;
+    public LayerMask lineOfSightMask;
 
     private EnemyCarController car;
     private Rigidbody rb;
@@ -30,40 +32,136 @@ public class EnemyAINavigator : MonoBehaviour
     private float targetXOffset;
     private float offsetTimer;
 
+    private List<Transform> trackWaypoints = new List<Transform>();
+    private int currentTargetIndex = 0;
+
     private void Start()
     {
         car = GetComponent<EnemyCarController>();
         rb = GetComponent<Rigidbody>();
+        
+        if (masterTarget != null && masterTarget.waypointParent != null)
+        {
+            foreach (Transform t in masterTarget.waypointParent)
+            {
+                trackWaypoints.Add(t);
+            }
+        }
+
         RandomizeOffsets();
     }
 
     private void FixedUpdate()
     {
-        if (masterTarget == null) return;
+        if (masterTarget == null || trackWaypoints.Count == 0) return;
 
         Vector3 masterFwd = masterTarget.transform.forward;
-        Vector3 distVector = transform.position - masterTarget.transform.position;
-        float distAhead = Vector3.Dot(distVector, masterFwd);
-
-        if (distAhead > 0)
-        {
-            rb.MovePosition(rb.position - masterFwd * distAhead);
-            
-            float currentFwdSpeed = Vector3.Dot(rb.linearVelocity, masterFwd);
-            float targetFwdSpeed = masterTarget.CurrentSpeed;
-            
-            if (currentFwdSpeed > targetFwdSpeed)
-            {
-                rb.linearVelocity -= masterFwd * (currentFwdSpeed - targetFwdSpeed);
-            }
-        }
-
         Vector3 masterRight = masterTarget.transform.right;
-        
+
         float clampedX = Mathf.Clamp(targetXOffset, masterTarget.CurrentSafeLeft, masterTarget.CurrentSafeRight);
         Vector3 formationPos = masterTarget.transform.position - (masterFwd * targetZOffset) + (masterRight * clampedX);
 
-        Vector3 dirToTarget = (formationPos - transform.position).normalized;
+        bool hasLineOfSight = !Physics.Linecast(transform.position + Vector3.up, formationPos + Vector3.up, lineOfSightMask);
+        
+        Vector3 driveTarget;
+        float finalThrottleInput;
+        float finalSteerInput;
+        float targetSpeed;
+
+        if (hasLineOfSight)
+        {
+            Vector3 distVector = transform.position - masterTarget.transform.position;
+            float distAhead = Vector3.Dot(distVector, masterFwd);
+
+            if (distAhead > 0)
+            {
+                rb.MovePosition(rb.position - masterFwd * distAhead);
+                
+                float currentFwdSpeed = Vector3.Dot(rb.linearVelocity, masterFwd);
+                float targetFwdSpeed = masterTarget.CurrentSpeed;
+                
+                if (currentFwdSpeed > targetFwdSpeed)
+                {
+                    rb.linearVelocity -= masterFwd * (currentFwdSpeed - targetFwdSpeed);
+                }
+            }
+            
+            driveTarget = formationPos;
+
+            int closestIndex = -1;
+            float closestDist = float.MaxValue;
+            for(int i = 0; i < trackWaypoints.Count; i++)
+            {
+                float d = Vector3.SqrMagnitude(transform.position - trackWaypoints[i].position);
+                if(d < closestDist)
+                {
+                    closestDist = d;
+                    closestIndex = i;
+                }
+            }
+
+            if (closestIndex != -1)
+            {
+                int nextIndex = (closestIndex + 1) % trackWaypoints.Count;
+                int prevIndex = (closestIndex - 1 + trackWaypoints.Count) % trackWaypoints.Count;
+
+                Vector3 toNext = (trackWaypoints[nextIndex].position - trackWaypoints[closestIndex].position).normalized;
+                Vector3 toPrev = (trackWaypoints[closestIndex].position - trackWaypoints[prevIndex].position).normalized;
+                Vector3 toCar = transform.position - trackWaypoints[closestIndex].position;
+
+                float dotNext = Vector3.Dot(toCar, toNext);
+                float dotPrev = Vector3.Dot(toCar, toPrev);
+
+                if (dotNext > 0)
+                {
+                    currentTargetIndex = nextIndex;
+                }
+                else
+                {
+                    currentTargetIndex = closestIndex;
+                }
+            }
+
+            Vector3 toMaster = masterTarget.transform.position - transform.position;
+            float distBehind = Vector3.Dot(toMaster, masterFwd);
+            
+            if (distBehind > zOffsetMax)
+            {
+                targetSpeed = car.MaxSpeed * catchUpSpeedMultiplier;
+            }
+            else
+            {
+                targetSpeed = car.MaxSpeed * regularSpeedMultiplier;
+            }
+
+            if (Vector3.Distance(transform.position, formationPos) < 3f && distBehind < 0)
+            {
+                finalThrottleInput = -0.5f;
+            }
+            else
+            {
+                finalThrottleInput = Mathf.Clamp((targetSpeed - car.CurrentSpeed) * 0.5f, -1f, 1f);
+            }
+        }
+        else
+        {
+            Transform targetPoint = trackWaypoints[currentTargetIndex];
+            driveTarget = targetPoint.position;
+
+            int prevIndex = (currentTargetIndex - 1 + trackWaypoints.Count) % trackWaypoints.Count;
+            Vector3 trackSegmentDir = (targetPoint.position - trackWaypoints[prevIndex].position).normalized;
+            Vector3 toTarget = targetPoint.position - transform.position;
+            
+            if (Vector3.Dot(toTarget, trackSegmentDir) < 0)
+            {
+                currentTargetIndex = (currentTargetIndex + 1) % trackWaypoints.Count;
+            }
+
+            targetSpeed = car.MaxSpeed * catchUpSpeedMultiplier;
+            finalThrottleInput = Mathf.Clamp((targetSpeed - car.CurrentSpeed) * 0.5f, -1f, 1f);
+        }
+
+        Vector3 dirToTarget = (driveTarget - transform.position).normalized;
 
         Collider[] neighbors = Physics.OverlapSphere(transform.position, separationRadius, racerMask);
         Vector3 separationSum = Vector3.zero;
@@ -99,42 +197,17 @@ public class EnemyAINavigator : MonoBehaviour
 
         dirToTarget.Normalize();
 
-        float angleToTarget = Vector3.SignedAngle(car.Forward, dirToTarget, Vector3.up);
-        float steerInput = Mathf.Clamp(angleToTarget * 0.03f, -1f, 1f);
-
-        Vector3 toMaster = masterTarget.transform.position - transform.position;
-        float distBehind = Vector3.Dot(toMaster, masterFwd);
-        
-        float targetSpeed;
-
-        if (distBehind > zOffsetMax)
-        {
-            targetSpeed = car.MaxSpeed * catchUpSpeedMultiplier;
-        }
-        else
-        {
-            targetSpeed = car.MaxSpeed * regularSpeedMultiplier;
-        }
-
-        float throttleInput;
-
-        if (Vector3.Distance(transform.position, formationPos) < 3f && distBehind < 0)
-        {
-            throttleInput = -0.5f;
-        }
-        else
-        {
-            throttleInput = Mathf.Clamp((targetSpeed - car.CurrentSpeed) * 0.5f, -1f, 1f);
-        }
+        float angleToTarget = Vector3.SignedAngle(car.Forward, dirToTarget, transform.up);
+        finalSteerInput = Mathf.Clamp(angleToTarget * 0.03f, -1f, 1f);
 
         if (Mathf.Abs(angleToTarget) > 25f)
         {
-            throttleInput *= 0.5f;
+            finalThrottleInput *= 0.5f;
         }
 
-        car.SetInputs(steerInput, throttleInput);
+        car.SetInputs(finalSteerInput, finalThrottleInput);
 
-        if (targetSpeed > car.MaxSpeed && car.CurrentSpeed < targetSpeed && throttleInput > 0.9f)
+        if (targetSpeed > car.MaxSpeed && car.CurrentSpeed < targetSpeed && finalThrottleInput > 0.9f)
         {
             float speedDeficit = targetSpeed - car.CurrentSpeed;
             rb.AddForce(car.Forward * speedDeficit, ForceMode.Acceleration);

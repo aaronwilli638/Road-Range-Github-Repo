@@ -58,6 +58,9 @@ public class EnemyCarController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Quaternion currentRotation = rb.rotation;
+        Quaternion nextRotation = currentRotation;
+
         Ray ray = new Ray(transform.position, -transform.up);
         if (Physics.Raycast(ray, out RaycastHit hit, hoverHeight + 5f, groundLayer))
         {
@@ -65,8 +68,8 @@ public class EnemyCarController : MonoBehaviour
             Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetPosition, Time.fixedDeltaTime * hoverDamping);
             rb.MovePosition(smoothedPosition);
 
-            Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-            rb.MoveRotation(Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * rotationSmoothing));
+            Quaternion targetAlign = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+            nextRotation = Quaternion.Slerp(currentRotation, targetAlign, Time.fixedDeltaTime * rotationSmoothing);
         }
         else
         {
@@ -76,9 +79,10 @@ public class EnemyCarController : MonoBehaviour
         if (Mathf.Abs(inputSteer) > 0.01f)
         {
             float turn = inputSteer * driveTurnSpeed * Time.fixedDeltaTime;
-            Quaternion turnRot = Quaternion.Euler(0f, turn, 0f);
-            rb.MoveRotation(rb.rotation * turnRot);
+            nextRotation *= Quaternion.Euler(0f, turn, 0f);
         }
+
+        rb.MoveRotation(nextRotation);
 
         if (Mathf.Abs(inputThrottle) > 0.01f)
         {
