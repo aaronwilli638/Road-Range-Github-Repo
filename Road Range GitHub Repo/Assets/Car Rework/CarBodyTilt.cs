@@ -9,6 +9,7 @@ public class CarBodyTilt : MonoBehaviour
     public float tiltFactor = 1.25f;
     public float smoothTime = 0.1f;
     public float maxTiltAngle = 15f;
+    public float deadZoneAngle = 2.0f;
 
     private float currentTilt;
     private float tiltVelocity;
@@ -30,6 +31,12 @@ public class CarBodyTilt : MonoBehaviour
         float speed = carRb.linearVelocity.magnitude;
 
         float targetTilt = -steer * speed * tiltFactor;
+
+        if (Mathf.Abs(targetTilt) < deadZoneAngle)
+        {
+            targetTilt = 0f;
+        }
+
         targetTilt = Mathf.Clamp(targetTilt, -maxTiltAngle, maxTiltAngle);
 
         currentTilt = Mathf.SmoothDamp(currentTilt, targetTilt, ref tiltVelocity, smoothTime);
