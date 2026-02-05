@@ -10,6 +10,7 @@ public class EnemyCarController : MonoBehaviour
     public float hoverHeight = 2.0f;
     public float hoverDamping = 10f;
     public float rotationSmoothing = 5f;
+    public float gravity = 40f; 
     public LayerMask groundLayer;
 
     private Rigidbody rb;
@@ -17,6 +18,10 @@ public class EnemyCarController : MonoBehaviour
     private float driveTurnSpeed;
     private float inputSteer;
     private float inputThrottle;
+    
+    private float currentVerticalSpeed;
+    private Vector3 airVelocity;
+    private Vector3 lastPosition;
 
     public Vector3 Forward => -transform.forward;
     public Vector3 Right => -transform.right;
@@ -38,6 +43,7 @@ public class EnemyCarController : MonoBehaviour
         rb.useGravity = false;
         rb.maxAngularVelocity = 20f;
         rb.angularDamping = 5f;
+        lastPosition = transform.position;
     }
 
     private void Start()
@@ -58,35 +64,55 @@ public class EnemyCarController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float dt = Time.fixedDeltaTime;
         Quaternion currentRotation = rb.rotation;
         Quaternion nextRotation = currentRotation;
+        
+        Vector3 currentEffectiveVelocity = (transform.position - lastPosition) / dt;
+        lastPosition = transform.position;
 
         Ray ray = new Ray(transform.position, -transform.up);
-        if (Physics.Raycast(ray, out RaycastHit hit, hoverHeight + 5f, groundLayer))
+        bool isGrounded = Physics.Raycast(ray, out RaycastHit hit, hoverHeight + 2.0f, groundLayer);
+
+        if (isGrounded)
         {
+            currentVerticalSpeed = 0f;
+            
+            airVelocity = currentEffectiveVelocity;
+            airVelocity.y = 0f; 
+
             Vector3 targetPosition = hit.point + (hit.normal * hoverHeight);
-            Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetPosition, Time.fixedDeltaTime * hoverDamping);
+            Vector3 smoothedPosition = Vector3.Lerp(rb.position, targetPosition, dt * hoverDamping);
             rb.MovePosition(smoothedPosition);
 
             Quaternion targetAlign = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-            nextRotation = Quaternion.Slerp(currentRotation, targetAlign, Time.fixedDeltaTime * rotationSmoothing);
+            nextRotation = Quaternion.Slerp(currentRotation, targetAlign, dt * rotationSmoothing);
+
+            if (Mathf.Abs(inputThrottle) > 0.01f)
+            {
+                rb.AddForce(Forward * inputThrottle * driveAcceleration, ForceMode.Acceleration);
+            }
         }
         else
         {
-            rb.AddForce(Vector3.down * 20f, ForceMode.Acceleration);
+            currentVerticalSpeed -= gravity * dt;
+
+            rb.linearVelocity = Vector3.zero; 
+
+            Vector3 displacement = (airVelocity * dt) + (Vector3.up * currentVerticalSpeed * dt);
+            
+            rb.MovePosition(rb.position + displacement);
+
+            Quaternion upright = Quaternion.FromToRotation(transform.up, Vector3.up) * currentRotation;
+            nextRotation = Quaternion.Slerp(currentRotation, upright, dt * 2f);
         }
 
         if (Mathf.Abs(inputSteer) > 0.01f)
         {
-            float turn = inputSteer * driveTurnSpeed * Time.fixedDeltaTime;
+            float turn = inputSteer * driveTurnSpeed * dt;
             nextRotation *= Quaternion.Euler(0f, turn, 0f);
         }
 
         rb.MoveRotation(nextRotation);
-
-        if (Mathf.Abs(inputThrottle) > 0.01f)
-        {
-            rb.AddForce(Forward * inputThrottle * driveAcceleration, ForceMode.Acceleration);
-        }
     }
 }

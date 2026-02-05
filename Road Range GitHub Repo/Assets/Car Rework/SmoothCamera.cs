@@ -37,10 +37,8 @@ public class SmoothCamera : MonoBehaviour
     private float currentVertTime;
     private float currentRotTime;
 
-    private Vector3 currentLocalVelocity; 
-    private Quaternion lastTargetRot;
-    
-    private Vector3 lastTargetPos;
+    private Vector3 previousTargetPos;
+    private Vector3 lastCarPos;
 
     void Start()
     {
@@ -54,8 +52,9 @@ public class SmoothCamera : MonoBehaviour
             Vector3 targetPos = target.TransformPoint(offset);
             transform.position = targetPos;
             transform.rotation = target.rotation;
-            lastTargetRot = target.rotation;
-            lastTargetPos = target.position;
+            
+            previousTargetPos = targetPos;
+            lastCarPos = target.position;
         }
     }
 
@@ -66,8 +65,8 @@ public class SmoothCamera : MonoBehaviour
         float dt = Time.deltaTime;
         if (dt < 0.0001f) return;
 
-        Vector3 smoothVelocity = (target.position - lastTargetPos) / dt;
-        lastTargetPos = target.position;
+        Vector3 smoothVelocity = (target.position - lastCarPos) / dt;
+        lastCarPos = target.position;
         float speed = smoothVelocity.magnitude;
 
         if (cam != null)
@@ -101,20 +100,30 @@ public class SmoothCamera : MonoBehaviour
         currentVertTime = Mathf.Lerp(currentVertTime, targetVertTime, transitionSpeed * dt);
         currentRotTime = Mathf.Lerp(currentRotTime, targetRotTime, transitionSpeed * dt);
 
-        Vector3 targetWorldPos = target.TransformPoint(offset);
-        
-        Vector3 currentLocalPos = target.InverseTransformPoint(transform.position);
-        Vector3 targetLocalPos = target.InverseTransformPoint(targetWorldPos);
+        Vector3 currentTargetPos = target.TransformPoint(offset);
+        Vector3 currentPos = transform.position;
 
-        Quaternion deltaRot = Quaternion.Inverse(lastTargetRot) * target.rotation;
-        currentLocalVelocity = Quaternion.Inverse(deltaRot) * currentLocalVelocity;
-        lastTargetRot = target.rotation;
+        Vector3 posError = currentPos - previousTargetPos;
+        Vector3 targetChange = currentTargetPos - previousTargetPos;
 
-        float newX = Mathf.SmoothDamp(currentLocalPos.x, targetLocalPos.x, ref currentLocalVelocity.x, currentLatTime);
-        float newY = Mathf.SmoothDamp(currentLocalPos.y, targetLocalPos.y, ref currentLocalVelocity.y, currentVertTime);
-        float newZ = Mathf.SmoothDamp(currentLocalPos.z, targetLocalPos.z, ref currentLocalVelocity.z, currentLongTime);
+        Vector3 right = target.right;
+        Vector3 up = target.up;
+        Vector3 fwd = target.forward;
 
-        transform.position = target.TransformPoint(new Vector3(newX, newY, newZ));
+        float latP = Vector3.Dot(posError, right);
+        float latC = Vector3.Dot(targetChange, right);
+        float newLat = SolveDynamicLerp(latP, latC, currentLatTime, dt);
+
+        float vertP = Vector3.Dot(posError, up);
+        float vertC = Vector3.Dot(targetChange, up);
+        float newVert = SolveDynamicLerp(vertP, vertC, currentVertTime, dt);
+
+        float longP = Vector3.Dot(posError, fwd);
+        float longC = Vector3.Dot(targetChange, fwd);
+        float newLong = SolveDynamicLerp(longP, longC, currentLongTime, dt);
+
+        transform.position = currentTargetPos + right * newLat + up * newVert + fwd * newLong;
+        previousTargetPos = currentTargetPos;
 
         Vector3 lookDirection;
         if (speed > 2f)
@@ -129,8 +138,14 @@ public class SmoothCamera : MonoBehaviour
         }
 
         Quaternion targetRot = Quaternion.LookRotation(lookDirection, Vector3.up);
-        
         float rotSpeed = 1f / Mathf.Max(0.01f, currentRotTime);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotSpeed * dt);
+    }
+
+    private float SolveDynamicLerp(float currentRelPrev, float targetChange, float dampTime, float dt)
+    {
+        float k = dampTime / dt;
+        float f = currentRelPrev + targetChange * k;
+        return -targetChange * k + f * Mathf.Exp(-1f / k);
     }
 }

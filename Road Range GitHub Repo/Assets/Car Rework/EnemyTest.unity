@@ -288,7 +288,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -321,6 +321,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -455,7 +456,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -488,6 +489,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -862,9 +864,9 @@ MonoBehaviour:
   hoverHeight: 1
   heightCorrectionSpeed: 10
   slopeAlignSpeed: 10
-  gravity: 50
+  gravity: 70
   groundCheckDistance: 2
-  airDrag: 0.1
+  airDrag: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -966,7 +968,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -999,6 +1001,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -1293,7 +1296,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -1326,6 +1329,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -1808,7 +1812,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -1841,6 +1845,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -2159,7 +2164,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -2192,6 +2197,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -2323,7 +2329,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -2356,6 +2362,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -3192,7 +3199,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -3225,6 +3232,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -3403,7 +3411,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -3436,6 +3444,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -3720,7 +3729,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -3753,6 +3762,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -3887,7 +3897,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -3920,6 +3930,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -4033,7 +4044,7 @@ MonoBehaviour:
   driveLongitudinalStiffness: 40
   driveVerticalStiffness: 20
   driveRotationStiffness: 15
-  driftLateralStiffness: 5
+  driftLateralStiffness: 10
   driftLongitudinalStiffness: 20
   driftVerticalStiffness: 10
   driftRotationStiffness: 5
@@ -4418,7 +4429,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -4451,6 +4462,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -4846,7 +4858,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -4879,6 +4891,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -5124,7 +5137,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -5157,6 +5170,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -5291,7 +5305,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -5324,6 +5338,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -6118,7 +6133,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -6151,6 +6166,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -6694,7 +6710,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -6727,6 +6743,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -6936,6 +6953,118 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 385e569fd263e5144922f78515134ec3, type: 3}
   m_PrefabInstance: {fileID: 1372818685}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1407976761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1407976765}
+  - component: {fileID: 1407976764}
+  - component: {fileID: 1407976763}
+  - component: {fileID: 1407976762}
+  m_Layer: 7
+  m_Name: Quad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!64 &1407976762
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407976761}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1407976763
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407976761}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1407976764
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407976761}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1407976765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407976761}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.41821858, y: -0.5701695, z: 0.41821858, w: 0.5701695}
+  m_LocalPosition: {x: 170.4, y: -0.8, z: -130.2}
+  m_LocalScale: {x: 122.2, y: 44.8, z: 44.8}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 72.52, y: -90, z: 0}
 --- !u!1 &1409631952
 GameObject:
   m_ObjectHideFlags: 0
@@ -7145,7 +7274,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -7178,6 +7307,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -7304,8 +7434,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyPoolParent: {fileID: 82554089}
   target: {fileID: 1492011112}
-  spawnDistance: 100
-  initialSpeed: 20
+  spawnDistance: 300
+  initialSpeed: 300
   spawnInterval: 5
   enemyLayerIndex: 9
 --- !u!1 &1548785526
@@ -7383,7 +7513,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -7416,6 +7546,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -8456,7 +8587,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -8489,6 +8620,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -8830,7 +8962,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -8863,6 +8995,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -9182,7 +9315,7 @@ MonoBehaviour:
   masterTarget: {fileID: 1492011114}
   zOffsetMin: 15
   zOffsetMax: 75
-  catchUpSpeedMultiplier: 1.5
+  catchUpSpeedMultiplier: 2.5
   regularSpeedMultiplier: 1.1
   lookAheadDistance: 10
   wallAvoidanceRadius: 10
@@ -9215,6 +9348,7 @@ MonoBehaviour:
   hoverHeight: 2
   hoverDamping: 10
   rotationSmoothing: 5
+  gravity: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -10090,3 +10224,4 @@ SceneRoots:
   - {fileID: 187542698}
   - {fileID: 67412827}
   - {fileID: 1818550148}
+  - {fileID: 1407976765}
