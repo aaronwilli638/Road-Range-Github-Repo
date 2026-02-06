@@ -13430,12 +13430,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2825372205500025925, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: lapSystem
+      value: 
+      objectReference: {fileID: 1920055645}
+    - target: {fileID: 2825372205500025925, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
       propertyPath: smoothCar
       value: 
       objectReference: {fileID: 50738990}
+    - target: {fileID: 2825372205500025925, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: shredderTransform
+      value: 
+      objectReference: {fileID: 1324195384}
     - target: {fileID: 3867752068521744346, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
       propertyPath: m_Name
       value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129687847152995295, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26369,7 +26381,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1324195379}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -37980,6 +37992,7 @@ MonoBehaviour:
   lap1Text: {fileID: 1838739268}
   lap2Text: {fileID: 144342268}
   lap3Text: {fileID: 2130782390}
+  _currentLap: 1
 --- !u!1 &1923258147
 GameObject:
   m_ObjectHideFlags: 0

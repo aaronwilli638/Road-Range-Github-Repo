@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Day 2/Day2Car.unity
-    guid: 29755bf48b51526469c777c1a367cd90
+    path: Assets/Car Rework/EnemyTest.unity
+    guid: 929edf488c113924ea1458c41e1049c1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
