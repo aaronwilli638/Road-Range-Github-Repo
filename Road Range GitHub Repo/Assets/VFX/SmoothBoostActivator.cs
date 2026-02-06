@@ -5,7 +5,7 @@ public class SmoothBoostActivator : MonoBehaviour
     public SmoothCar carController;
 
     [Header("Boost Objects")]
-    public GameObject[] boostFX;
+    public ParticleSystem[] boostFX;
 
     private bool _wasBoosting;
 
@@ -40,7 +40,14 @@ public class SmoothBoostActivator : MonoBehaviour
         {
             if (boostFX[i] != null)
             {
-                boostFX[i].SetActive(active);
+                if (active)
+                {
+                    boostFX[i].Play();
+                }
+                else
+                {
+                    boostFX[i].Stop();
+                }
             }
         }
     }
