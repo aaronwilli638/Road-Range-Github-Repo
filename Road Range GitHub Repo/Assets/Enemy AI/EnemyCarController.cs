@@ -12,6 +12,10 @@ public class EnemyCarController : MonoBehaviour
     public float rotationSmoothing = 5f;
     public float gravity = 40f; 
     public LayerMask groundLayer;
+    
+    [Header("Surface")]
+    public int offroadLayerIndex = 1;
+    public float offroadSpeedMult = 0.5f;
 
     private Rigidbody rb;
     private float driveAcceleration;
@@ -74,8 +78,19 @@ public class EnemyCarController : MonoBehaviour
         Ray ray = new Ray(transform.position, -transform.up);
         bool isGrounded = Physics.Raycast(ray, out RaycastHit hit, hoverHeight + 2.0f, groundLayer);
 
+        float currentAcc = driveAcceleration;
+
         if (isGrounded)
         {
+            Terrain terrain = hit.collider.GetComponent<Terrain>();
+            if (terrain != null)
+            {
+                if (GetDominantTextureIndex(hit.point, terrain) == offroadLayerIndex)
+                {
+                    currentAcc *= offroadSpeedMult;
+                }
+            }
+
             currentVerticalSpeed = 0f;
             
             airVelocity = currentEffectiveVelocity;
@@ -90,7 +105,7 @@ public class EnemyCarController : MonoBehaviour
 
             if (Mathf.Abs(inputThrottle) > 0.01f)
             {
-                rb.AddForce(Forward * inputThrottle * driveAcceleration, ForceMode.Acceleration);
+                rb.AddForce(Forward * inputThrottle * currentAcc, ForceMode.Acceleration);
             }
         }
         else
@@ -114,5 +129,33 @@ public class EnemyCarController : MonoBehaviour
         }
 
         rb.MoveRotation(nextRotation);
+    }
+
+    private int GetDominantTextureIndex(Vector3 worldPos, Terrain terrain)
+    {
+        TerrainData td = terrain.terrainData;
+        float mapX = ((worldPos.x - terrain.transform.position.x) / td.size.x) * td.alphamapWidth;
+        float mapZ = ((worldPos.z - terrain.transform.position.z) / td.size.z) * td.alphamapHeight;
+
+        int x = Mathf.FloorToInt(mapX);
+        int z = Mathf.FloorToInt(mapZ);
+        
+        if (x < 0 || z < 0 || x >= td.alphamapWidth || z >= td.alphamapHeight) return 0;
+
+        float[,,] splat = td.GetAlphamaps(x, z, 1, 1);
+
+        float maxMix = 0;
+        int maxIndex = 0;
+
+        for (int i = 0; i < td.alphamapLayers; i++)
+        {
+            if (splat[0, 0, i] > maxMix)
+            {
+                maxMix = splat[0, 0, i];
+                maxIndex = i;
+            }
+        }
+
+        return maxIndex;
     }
 }

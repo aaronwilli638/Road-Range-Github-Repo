@@ -15,9 +15,11 @@ public class EnemyMasterTarget : MonoBehaviour
     public float speedMultiplier = 0.6f; 
 
     [Header("Track Detection")]
-    public LayerMask wallLayer;
+    public LayerMask groundLayer;
+    public int offroadLayerIndex = 1;
     public float maxScanDistance = 20f;
-    public float wallPadding = 2f;
+    public float scanStep = 1.0f;
+    public float edgePadding = 2f;
 
     private List<Transform> waypoints = new List<Transform>();
     private int currentIndex = 0;
@@ -60,25 +62,68 @@ public class EnemyMasterTarget : MonoBehaviour
             OnWaypointReached?.Invoke();
         }
 
-        ScanTrackWidth();
+        ScanTerrainWidth();
     }
 
-    private void ScanTrackWidth()
+    private void ScanTerrainWidth()
     {
+        CurrentSafeRight = maxScanDistance;
+        CurrentSafeLeft = -maxScanDistance;
+
         RaycastHit hit;
-        Vector3 origin = transform.position + Vector3.up;
+        if (Physics.Raycast(transform.position + Vector3.up * 5f, Vector3.down, out hit, 20f, groundLayer))
+        {
+            Terrain terrain = hit.collider.GetComponent<Terrain>();
+            if (terrain != null)
+            {
+                for (float d = 0; d < maxScanDistance; d += scanStep)
+                {
+                    Vector3 probe = transform.position + (transform.right * d);
+                    if (IsOffroad(probe, terrain))
+                    {
+                        CurrentSafeRight = Mathf.Max(0, d - edgePadding);
+                        break;
+                    }
+                }
 
-        if (Physics.Raycast(origin, transform.right, out hit, maxScanDistance, wallLayer))
-            CurrentSafeRight = Mathf.Max(0f, hit.distance - wallPadding);
-        else
-            CurrentSafeRight = maxScanDistance;
+                for (float d = 0; d < maxScanDistance; d += scanStep)
+                {
+                    Vector3 probe = transform.position - (transform.right * d);
+                    if (IsOffroad(probe, terrain))
+                    {
+                        CurrentSafeLeft = -Mathf.Max(0, d - edgePadding);
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
-        if (Physics.Raycast(origin, -transform.right, out hit, maxScanDistance, wallLayer))
-            CurrentSafeLeft = -Mathf.Max(0f, hit.distance - wallPadding);
-        else
-            CurrentSafeLeft = -maxScanDistance;
+    private bool IsOffroad(Vector3 worldPos, Terrain terrain)
+    {
+        TerrainData td = terrain.terrainData;
+        float mapX = ((worldPos.x - terrain.transform.position.x) / td.size.x) * td.alphamapWidth;
+        float mapZ = ((worldPos.z - terrain.transform.position.z) / td.size.z) * td.alphamapHeight;
+
+        int x = Mathf.FloorToInt(mapX);
+        int z = Mathf.FloorToInt(mapZ);
+
+        if (x < 0 || z < 0 || x >= td.alphamapWidth || z >= td.alphamapHeight) return true;
+
+        float[,,] splat = td.GetAlphamaps(x, z, 1, 1);
         
-        Debug.DrawRay(origin, transform.right * CurrentSafeRight, Color.green);
-        Debug.DrawRay(origin, -transform.right * Mathf.Abs(CurrentSafeLeft), Color.red);
+        float maxMix = 0;
+        int maxIndex = 0;
+
+        for (int i = 0; i < td.alphamapLayers; i++)
+        {
+            if (splat[0, 0, i] > maxMix)
+            {
+                maxMix = splat[0, 0, i];
+                maxIndex = i;
+            }
+        }
+
+        return maxIndex == offroadLayerIndex;
     }
 }

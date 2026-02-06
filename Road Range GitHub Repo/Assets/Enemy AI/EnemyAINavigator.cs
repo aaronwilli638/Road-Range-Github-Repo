@@ -25,6 +25,7 @@ public class EnemyAINavigator : MonoBehaviour
     public LayerMask obstacleMask;
     public LayerMask racerMask;
     public LayerMask lineOfSightMask;
+    public LayerMask groundLayer;
 
     private EnemyCarController car;
     private Rigidbody rb;
@@ -110,38 +111,19 @@ public class EnemyAINavigator : MonoBehaviour
                 Vector3 toCar = transform.position - trackWaypoints[closestIndex].position;
 
                 float dotNext = Vector3.Dot(toCar, toNext);
-                float dotPrev = Vector3.Dot(toCar, toPrev);
 
-                if (dotNext > 0)
-                {
-                    currentTargetIndex = nextIndex;
-                }
-                else
-                {
-                    currentTargetIndex = closestIndex;
-                }
+                if (dotNext > 0) currentTargetIndex = nextIndex;
+                else currentTargetIndex = closestIndex;
             }
 
             Vector3 toMaster = masterTarget.transform.position - transform.position;
             float distBehind = Vector3.Dot(toMaster, masterFwd);
             
-            if (distBehind > zOffsetMax)
-            {
-                targetSpeed = car.MaxSpeed * catchUpSpeedMultiplier;
-            }
-            else
-            {
-                targetSpeed = car.MaxSpeed * regularSpeedMultiplier;
-            }
+            if (distBehind > zOffsetMax) targetSpeed = car.MaxSpeed * catchUpSpeedMultiplier;
+            else targetSpeed = car.MaxSpeed * regularSpeedMultiplier;
 
-            if (Vector3.Distance(transform.position, formationPos) < 3f && distBehind < 0)
-            {
-                finalThrottleInput = -0.5f;
-            }
-            else
-            {
-                finalThrottleInput = Mathf.Clamp((targetSpeed - car.CurrentSpeed) * 0.5f, -1f, 1f);
-            }
+            if (Vector3.Distance(transform.position, formationPos) < 3f && distBehind < 0) finalThrottleInput = -0.5f;
+            else finalThrottleInput = Mathf.Clamp((targetSpeed - car.CurrentSpeed) * 0.5f, -1f, 1f);
         }
         else
         {
@@ -185,14 +167,17 @@ public class EnemyAINavigator : MonoBehaviour
             }
         }
 
-        if (count > 0)
-        {
-            dirToTarget += separationSum.normalized * separationStrength;
-        }
+        if (count > 0) dirToTarget += separationSum.normalized * separationStrength;
 
         if (Physics.SphereCast(transform.position, wallAvoidanceRadius, car.Forward, out RaycastHit hit, lookAheadDistance, obstacleMask))
         {
             dirToTarget += Vector3.Reflect(car.Forward, hit.normal) * wallAvoidanceStrength;
+        }
+
+        Vector3 terrainCorrection = CheckTerrainBounds();
+        if (terrainCorrection != Vector3.zero)
+        {
+            dirToTarget += terrainCorrection * wallAvoidanceStrength * 2f;
         }
 
         dirToTarget.Normalize();
@@ -200,10 +185,7 @@ public class EnemyAINavigator : MonoBehaviour
         float angleToTarget = Vector3.SignedAngle(car.Forward, dirToTarget, transform.up);
         finalSteerInput = Mathf.Clamp(angleToTarget * 0.03f, -1f, 1f);
 
-        if (Mathf.Abs(angleToTarget) > 25f)
-        {
-            finalThrottleInput *= 0.5f;
-        }
+        if (Mathf.Abs(angleToTarget) > 25f) finalThrottleInput *= 0.5f;
 
         car.SetInputs(finalSteerInput, finalThrottleInput);
 
@@ -219,6 +201,63 @@ public class EnemyAINavigator : MonoBehaviour
             offsetTimer = 0f;
             if (Random.value > 0.7f) RandomizeOffsets();
         }
+    }
+
+    private Vector3 CheckTerrainBounds()
+    {
+        if (masterTarget == null) return Vector3.zero;
+
+        Vector3 leftProbe = transform.position + (transform.forward * lookAheadDistance) - (transform.right * 2f);
+        Vector3 rightProbe = transform.position + (transform.forward * lookAheadDistance) + (transform.right * 2f);
+        
+        bool leftOff = IsPointOffroad(leftProbe);
+        bool rightOff = IsPointOffroad(rightProbe);
+
+        if (leftOff && !rightOff) return transform.right;
+        if (rightOff && !leftOff) return -transform.right;
+        if (leftOff && rightOff) return (masterTarget.transform.position - transform.position).normalized;
+
+        return Vector3.zero;
+    }
+
+    private bool IsPointOffroad(Vector3 point)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(point + Vector3.up * 5f, Vector3.down, out hit, 10f, groundLayer))
+        {
+            Terrain t = hit.collider.GetComponent<Terrain>();
+            if (t != null)
+            {
+                return IsOffroadTexture(hit.point, t);
+            }
+        }
+        return false;
+    }
+
+    private bool IsOffroadTexture(Vector3 worldPos, Terrain terrain)
+    {
+        TerrainData td = terrain.terrainData;
+        float mapX = ((worldPos.x - terrain.transform.position.x) / td.size.x) * td.alphamapWidth;
+        float mapZ = ((worldPos.z - terrain.transform.position.z) / td.size.z) * td.alphamapHeight;
+
+        int x = Mathf.FloorToInt(mapX);
+        int z = Mathf.FloorToInt(mapZ);
+
+        if (x < 0 || z < 0 || x >= td.alphamapWidth || z >= td.alphamapHeight) return true;
+
+        float[,,] splat = td.GetAlphamaps(x, z, 1, 1);
+        
+        float maxMix = 0;
+        int maxIndex = 0;
+        for (int i = 0; i < td.alphamapLayers; i++)
+        {
+            if (splat[0, 0, i] > maxMix)
+            {
+                maxMix = splat[0, 0, i];
+                maxIndex = i;
+            }
+        }
+        return maxIndex == masterTarget.offroadLayerIndex;
     }
 
     private void RandomizeOffsets()
