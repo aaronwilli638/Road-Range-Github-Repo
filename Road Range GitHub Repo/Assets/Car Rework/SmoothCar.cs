@@ -33,6 +33,11 @@ public class SmoothCar : MonoBehaviour
     public float airDrag = 0.1f; 
     public LayerMask groundLayer;
 
+    [Header("Surface Detection")]
+    public int offroadTerrainLayerIndex = 1;
+    public float offroadSpeedMultiplier = 0.5f;
+    public float offroadDragMultiplier = 2.0f;
+
     private Rigidbody rb;
     private EnergySystem energySystem;
     private float boostLeniencyTimer;
@@ -41,6 +46,7 @@ public class SmoothCar : MonoBehaviour
     private bool isBoosting;
     private bool isDriftInput;
     private bool isGrounded;
+    private bool isOffroad;
     
     private float driftWeight;
     private float boostState;
@@ -105,6 +111,11 @@ public class SmoothCar : MonoBehaviour
         }
 
         if (Mouse.current != null && Mouse.current.leftButton.isPressed) isBoosting = true;
+
+        if (isOffroad)
+        {
+            isBoosting = false;
+        }
 
         if (isBoosting && !isDriftInput && isGrounded)
         {
@@ -182,6 +193,28 @@ public class SmoothCar : MonoBehaviour
         currentAcceleration = Mathf.Lerp(baseAcceleration, driftAcceleration, driftBlend);
         currentTurnSpeed = Mathf.Lerp(baseTurnSpeed, driftTurnSpeed, driftBlend);
         currentDrag = Mathf.Lerp(baseDrag, driftDrag, driftBlend);
+
+        float currentSurfaceMultiplier = 1f;
+        float currentSurfaceDragMultiplier = 1f;
+        isOffroad = false;
+
+        if (isGrounded)
+        {
+            Terrain terrain = hit.collider.GetComponent<Terrain>();
+            if (terrain != null)
+            {
+                int domIndex = GetDominantTextureIndex(hit.point, terrain);
+                if (domIndex == offroadTerrainLayerIndex)
+                {
+                    isOffroad = true;
+                    currentSurfaceMultiplier = offroadSpeedMultiplier;
+                    currentSurfaceDragMultiplier = offroadDragMultiplier;
+                }
+            }
+        }
+
+        currentAcceleration *= currentSurfaceMultiplier;
+        currentDrag *= currentSurfaceDragMultiplier;
 
         if (isBoosting) boostState = Mathf.MoveTowards(boostState, 1f, dt * 5f);
         else
@@ -266,5 +299,31 @@ public class SmoothCar : MonoBehaviour
         Vector3 angularVel = axis * (angle * Mathf.Deg2Rad / dt);
         if (angularVel.magnitude > 100f) angularVel = angularVel.normalized * 100f;
         rb.angularVelocity = angularVel;
+    }
+
+    private int GetDominantTextureIndex(Vector3 worldPos, Terrain terrain)
+    {
+        TerrainData terrainData = terrain.terrainData;
+        float mapX = ((worldPos.x - terrain.transform.position.x) / terrainData.size.x) * terrainData.alphamapWidth;
+        float mapZ = ((worldPos.z - terrain.transform.position.z) / terrainData.size.z) * terrainData.alphamapHeight;
+
+        int x = Mathf.FloorToInt(mapX);
+        int z = Mathf.FloorToInt(mapZ);
+
+        float[,,] splatmapData = terrainData.GetAlphamaps(x, z, 1, 1);
+
+        float maxMix = 0;
+        int maxIndex = 0;
+
+        for (int i = 0; i < terrainData.alphamapLayers; i++)
+        {
+            if (splatmapData[0, 0, i] > maxMix)
+            {
+                maxMix = splatmapData[0, 0, i];
+                maxIndex = i;
+            }
+        }
+
+        return maxIndex;
     }
 }
