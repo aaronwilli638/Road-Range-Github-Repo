@@ -23,14 +23,7 @@ public class SmoothCamera : MonoBehaviour
     public float driftVerticalStiffness = 10f;
     public float driftRotationStiffness = 5f;
 
-    [Header("FOV Settings")]
-    public float minFov = 60f;
-    public float maxFov = 90f;
-    public float fovSpeedCap = 80f;
-    public float fovTransitionSpeed = 2f;
-
     private SmoothCar carController;
-    private Camera cam;
 
     private float currentLatTime;
     private float currentLongTime;
@@ -42,8 +35,6 @@ public class SmoothCamera : MonoBehaviour
 
     void Start()
     {
-        cam = GetComponent<Camera>();
-
         if (target != null)
         {
             carController = target.GetComponent<SmoothCar>();
@@ -68,14 +59,6 @@ public class SmoothCamera : MonoBehaviour
         Vector3 smoothVelocity = (target.position - lastCarPos) / dt;
         lastCarPos = target.position;
         float speed = smoothVelocity.magnitude;
-
-        if (cam != null)
-        {
-            float t = Mathf.Clamp01(speed / fovSpeedCap);
-            t = Mathf.SmoothStep(0f, 1f, t);
-            float targetFov = Mathf.Lerp(minFov, maxFov, t);
-            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFov, fovTransitionSpeed * dt);
-        }
 
         float driftFactor = carController != null ? carController.DriftFactor : 0f;
 
