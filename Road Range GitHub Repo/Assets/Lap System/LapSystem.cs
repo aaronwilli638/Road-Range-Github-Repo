@@ -11,7 +11,7 @@ public class LapSystem : MonoBehaviour
     public TMP_Text lap3Text;
 
     private int _nextIndex = 1;
-    private int _currentLap = 1;
+    public int _currentLap = 1;
     private float _currentLapTime;
     private float _totalRaceTime;
 
