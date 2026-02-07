@@ -1,0 +1,215 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3867752068521744346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1849474327229064165}
+  - component: {fileID: 6512752673466041629}
+  - component: {fileID: 2825372205500025925}
+  - component: {fileID: 9129687847152995295}
+  - component: {fileID: 4978266490792989564}
+  - component: {fileID: 3743438766416160683}
+  - component: {fileID: 80794467106345167}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1849474327229064165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867752068521744346}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 184.71463, y: -41.52943, z: 67.30151}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3069681456896682033}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6512752673466041629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867752068521744346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioBankLoader
+  LoadEvent: 1
+  UnloadEvent: 0
+  Banks:
+  - Desktop/UI
+  - Desktop/SFX
+  - Desktop/MX
+  - Desktop/Master.strings
+  - Desktop/Master
+  - Desktop/VA
+  CollisionTag: 
+  PreloadSamples: 0
+--- !u!114 &2825372205500025925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867752068521744346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d2f2ceeadcff54ebd8d5ceaa5b12e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioStatus
+  smoothCar: {fileID: 0}
+  shredderDistance: 300
+  slickMode: 0
+  lap: 0
+--- !u!114 &9129687847152995295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867752068521744346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c3d0c5e91fdf146a65833934d380a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedGetter
+  audioStatus: {fileID: 2825372205500025925}
+--- !u!114 &4978266490792989564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867752068521744346}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77b9050cafbd4a6fa1588fc3caae24a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  eventsToPlay:
+  - Guid:
+      Data1: 158280088
+      Data2: 1151451488
+      Data3: -376787809
+      Data4: 1358754209
+    Path: event:/SFX/Player Car Audio
+  - Guid:
+      Data1: -1587911760
+      Data2: 1308771356
+      Data3: 647050912
+      Data4: 185160715
+    Path: event:/SFX/Shredder
+  - Guid:
+      Data1: -665180128
+      Data2: 1327183364
+      Data3: -1459002971
+      Data4: -786910285
+    Path: event:/VA/Announcer Lap Announcemets
+  attachToGameObject: 1
+--- !u!114 &3743438766416160683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867752068521744346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7030daa6c6a264c7f94add1bf99f6535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FmodParameterTracker
+  audioStatus: {fileID: 2825372205500025925}
+  fmodEventPaths:
+  - event:/MX/RaceMusic v2
+  - event:/SFX/Player Car Audio
+  - event:/SFX/Shredder
+  - event:/VA/Announcer Lap Announcemets
+  speedParameter: Car Speed
+  driftingParameter: Drifting
+  distanceParameter: Distance to Shredder
+  slickModeParameter: Slick Mode
+  lapProgression: Race Progression
+--- !u!114 &80794467106345167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3867752068521744346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dca0c0710c154643be014d37a4f9b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FmodBoostTracker
+  audioStatus: {fileID: 2825372205500025925}
+  fmodEventPaths:
+  - event:/SFX/Boost
+--- !u!1 &7964408227044455761
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3069681456896682033}
+  - component: {fileID: 4586161620954496874}
+  m_Layer: 0
+  m_Name: Player Car Audio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3069681456896682033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7964408227044455761}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 148.71402, y: 41.52943, z: 49.069267}
+  m_LocalScale: {x: 0.57576, y: 0.57576, z: 0.57576}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1849474327229064165}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4586161620954496874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7964408227044455761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7030daa6c6a264c7f94add1bf99f6535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FmodCarSpeed
+  audioStatus: {fileID: 2825372205500025925}
+  fmodEventPaths:
+  - event:/SFX/Player Car Audio
+  - event:/SFX/Shredder
+  speedParameter: Car Speed
+  driftingParameter: Drifting
+  distanceParameter: Distance To Shredder
+  slickModeParameter: Slick Mode
+  lapProgression: Race Progression
