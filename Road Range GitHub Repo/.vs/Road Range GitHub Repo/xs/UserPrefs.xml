@@ -1,0 +1,16 @@
+﻿<Properties StartupConfiguration="{F041F733-8B29-2715-51BB-27E73DC0FA3A}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Enemy AI/DestroyOnContact.cs">
+    <Files>
+      <File FileName="Assets/Enemy AI/EnemyCarController.cs" Line="70" Column="1" />
+      <File FileName="Assets/Enemy AI/DestroyOnContact.cs" Line="30" Column="31" />
+      <File FileName="Assets/Audio/FmodEventTracker.cs" Line="64" Column="18" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="2d85d990-e465-418b-af83-2705907520fa" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

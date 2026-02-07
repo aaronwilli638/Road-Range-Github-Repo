@@ -71,6 +71,7 @@ MonoBehaviour:
     Data3: 113228446
     Data4: 34428223
   Banks:
+  - {fileID: -2390134011557944202}
   - {fileID: -3108748488873938528}
   IsStream: 0
   Is3D: 0
@@ -223,10 +224,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639059818043860111
+  lastModified: 639060796173136370
   FileSizes:
   - Name: 
-    Value: 3800
+    Value: 3872
   Exists: 1
 --- !u!114 &-6781643853729598445
 MonoBehaviour:
@@ -430,7 +431,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/MX.bank
   Name: MX
   StudioPath: bank:/MX
-  lastModified: 639059818071191164
+  lastModified: 639060796173591441
   FileSizes: []
   Exists: 1
 --- !u!114 &-4659523260727768093
@@ -457,60 +458,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-4444420364527501210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Slick 3
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/SFX/Slick 3
-  Guid:
-    Data1: 1427102094
-    Data2: 1094475136
-    Data3: -2142642042
-    Data4: -43921207
-  Banks:
-  - {fileID: -2390134011557944202}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4085
---- !u!114 &-4384071383470217678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VA/Player Builds Big Combo
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VA/Player Builds Big Combo
-  Guid:
-    Data1: -262807001
-    Data2: 1307142083
-    Data3: -2060275834
-    Data4: -2098060497
-  Banks:
-  - {fileID: -3108748488873938528}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2000
 --- !u!114 &-4190078314650183362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,6 +479,61 @@ MonoBehaviour:
   Banks:
   - {fileID: -3108748488873938528}
   IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3972023744517872820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MX/Tutorial Area
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/MX/Tutorial Area
+  Guid:
+    Data1: -1975702505
+    Data2: 1225339461
+    Data3: -866967903
+    Data4: -1310928867
+  Banks:
+  - {fileID: -4844946089100013169}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 98143
+--- !u!114 &-3942051593062598696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player Death Stinger
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/Player Death Stinger
+  Guid:
+    Data1: 505322326
+    Data2: 1341444849
+    Data3: 1347039899
+    Data4: 783696191
+  Banks:
+  - {fileID: -2390134011557944202}
+  - {fileID: -3108748488873938528}
+  IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters: []
@@ -635,7 +637,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/VA.bank
   Name: VA
   StudioPath: bank:/VA
-  lastModified: 639059818084309337
+  lastModified: 639060796175983943
   FileSizes: []
   Exists: 1
 --- !u!114 &-3094486535826211052
@@ -716,6 +718,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 5450
+--- !u!114 &-2731480562782920468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: snapshot:/Turn off Shredder
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: snapshot:/Turn off Shredder
+  Guid:
+    Data1: -1371158585
+    Data2: 1172053475
+    Data3: -1627844962
+    Data4: 257289745
+  Banks:
+  - {fileID: -4844946089100013169}
+  - {fileID: 4860390213383976582}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
 --- !u!114 &-2537047744746127274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,6 +765,7 @@ MonoBehaviour:
     Data3: 49209737
     Data4: -72116194
   Banks:
+  - {fileID: -2390134011557944202}
   - {fileID: -3108748488873938528}
   IsStream: 0
   Is3D: 0
@@ -758,7 +789,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639059818077042113
+  lastModified: 639060796174519286
   FileSizes: []
   Exists: 1
 --- !u!114 &-1393860187726782539
@@ -785,8 +816,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 6.4
-  MaxDistance: 46
+  MinDistance: 5.6
+  MaxDistance: 400
   Length: 0
 --- !u!114 &-871956019016503811
 MonoBehaviour:
@@ -894,7 +925,6 @@ MonoBehaviour:
   - {fileID: 2448947699090357818}
   - {fileID: -3108748488873938528}
   EditorEvents:
-  - {fileID: 2760932307341494739}
   - {fileID: 2038594653544857001}
   - {fileID: -3660038360852328008}
   - {fileID: 8389957859191338551}
@@ -903,10 +933,6 @@ MonoBehaviour:
   - {fileID: -5870949539115265149}
   - {fileID: -871956019016503811}
   - {fileID: 2362019753969874896}
-  - {fileID: 1170848788584959358}
-  - {fileID: 7672178357762958716}
-  - {fileID: 5517122602641484300}
-  - {fileID: -4444420364527501210}
   - {fileID: -5778849818946359769}
   - {fileID: -9083146013193188617}
   - {fileID: -2928219006977516836}
@@ -918,7 +944,6 @@ MonoBehaviour:
   - {fileID: 857936488381104847}
   - {fileID: -3272566896254988085}
   - {fileID: -8703292258891434432}
-  - {fileID: -4384071383470217678}
   - {fileID: 3190754164445167908}
   - {fileID: 5968510839375274198}
   - {fileID: 6133048359643543516}
@@ -946,6 +971,11 @@ MonoBehaviour:
   - {fileID: 4017502290600814372}
   - {fileID: -6051098059516922995}
   - {fileID: -8499154695643099829}
+  - {fileID: 2575583529491130762}
+  - {fileID: -3942051593062598696}
+  - {fileID: 743228453085696090}
+  - {fileID: -3972023744517872820}
+  - {fileID: -2731480562782920468}
   EditorParameters:
   - {fileID: 747436942106875865}
   - {fileID: 7200543123053904467}
@@ -953,7 +983,7 @@ MonoBehaviour:
   - {fileID: 4860390213383976582}
   StringsBanks:
   - {fileID: -7339498881135217161}
-  cacheTime: 639059818084309337
+  cacheTime: 639060796175983943
   cacheVersion: 131635
 --- !u!114 &5868896318388997
 MonoBehaviour:
@@ -1035,7 +1065,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4750
+  Length: 4500
+--- !u!114 &743228453085696090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemy Engine
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/Enemy Engine
+  Guid:
+    Data1: 544208372
+    Data2: 1157499670
+    Data3: 789962405
+    Data4: -2123925639
+  Banks:
+  - {fileID: -2390134011557944202}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 4.8
+  MaxDistance: 600
+  Length: 14000
 --- !u!114 &747436942106875865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,7 +1139,7 @@ MonoBehaviour:
     Data4: -786910285
   Banks:
   - {fileID: -3108748488873938528}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
@@ -1090,7 +1147,7 @@ MonoBehaviour:
   - {fileID: -6781643853729598445}
   MinDistance: 1
   MaxDistance: 20
-  Length: 14000
+  Length: 13500
 --- !u!114 &955910674838119727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,33 +1253,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &1170848788584959358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Slick 4
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/SFX/Slick 4
-  Guid:
-    Data1: -1007434449
-    Data2: 1290002125
-    Data3: 1763101881
-    Data4: -207664177
-  Banks:
-  - {fileID: -2390134011557944202}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4085
 --- !u!114 &1421103304463838752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1370,10 +1400,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 639059818077680399
+  lastModified: 639060796174814027
   FileSizes: []
   Exists: 1
---- !u!114 &2760932307341494739
+--- !u!114 &2575583529491130762
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1383,15 +1413,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: snapshot:/Death
+  m_Name: snapshot:/RACE FINISH SFX Remover
   m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: snapshot:/Death
+  Path: snapshot:/RACE FINISH SFX Remover
   Guid:
-    Data1: -1702580948
-    Data2: 1177216669
-    Data3: -308925793
-    Data4: -1581280716
+    Data1: 1635048806
+    Data2: 1289893511
+    Data3: 764054958
+    Data4: -574116041
   Banks:
+  - {fileID: -4844946089100013169}
   - {fileID: 4860390213383976582}
   IsStream: 0
   Is3D: 0
@@ -1654,7 +1685,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639059818043835010
+  lastModified: 639060796173124719
   FileSizes: []
   Exists: 1
 --- !u!114 &4928767885403184189
@@ -1711,33 +1742,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
---- !u!114 &5517122602641484300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Slick 1
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/SFX/Slick 1
-  Guid:
-    Data1: -62925447
-    Data2: 1249952912
-    Data3: 1951104136
-    Data4: 972755485
-  Banks:
-  - {fileID: -2390134011557944202}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4085
 --- !u!114 &5968510839375274198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1757,6 +1761,7 @@ MonoBehaviour:
     Data3: 141067931
     Data4: -1993893713
   Banks:
+  - {fileID: -2390134011557944202}
   - {fileID: -3108748488873938528}
   IsStream: 0
   Is3D: 0
@@ -1764,7 +1769,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3281
+  Length: 4000
 --- !u!114 &6133048359643543516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1818,7 +1823,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1625
+  Length: 4500
 --- !u!114 &7200543123053904467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1843,33 +1848,6 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &7672178357762958716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Slick 2
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/SFX/Slick 2
-  Guid:
-    Data1: 241153337
-    Data2: 1283746955
-    Data3: 381288122
-    Data4: 2017723595
-  Banks:
-  - {fileID: -2390134011557944202}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4085
 --- !u!114 &8003209238422224089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1917,6 +1895,7 @@ MonoBehaviour:
     Data4: -1763389331
   Banks:
   - {fileID: 4860390213383976582}
+  - {fileID: -2390134011557944202}
   - {fileID: -3108748488873938528}
   IsStream: 0
   Is3D: 0

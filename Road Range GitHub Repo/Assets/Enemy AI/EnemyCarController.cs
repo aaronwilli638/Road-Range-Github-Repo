@@ -1,4 +1,6 @@
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio; //needed for fmod commands
 
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyCarController : MonoBehaviour
@@ -12,7 +14,10 @@ public class EnemyCarController : MonoBehaviour
     public float rotationSmoothing = 5f;
     public float gravity = 40f; 
     public LayerMask groundLayer;
-    
+
+    [Header("FMOD")] //finding the fmod event to trigger
+    private string engineEvent = "event:/SFX/Enemy Engine";
+
     [Header("Surface")]
     public int offroadLayerIndex = 1;
     public float offroadSpeedMult = 0.5f;
@@ -22,7 +27,9 @@ public class EnemyCarController : MonoBehaviour
     private float driveTurnSpeed;
     private float inputSteer;
     private float inputThrottle;
-    
+
+    private EventInstance engineInstance; //stores engine sound so it can be stopped smoothly
+
     private float currentVerticalSpeed;
     private Vector3 airVelocity;
     private Vector3 lastPosition;
@@ -49,6 +56,25 @@ public class EnemyCarController : MonoBehaviour
         rb.maxAngularVelocity = 20f;
         rb.angularDamping = 5f;
         lastPosition = transform.position;
+    }
+
+    private void OnEnable() //starts sound when activates, and attaches the 3d event to the rigidbofy
+    {
+        if (string.IsNullOrEmpty(engineEvent))
+            return;
+
+        engineInstance = RuntimeManager.CreateInstance(engineEvent);
+        RuntimeManager.AttachInstanceToGameObject(engineInstance, transform, rb);
+        engineInstance.start();
+    }
+
+    private void OnDisable() //fmod stop engine sound when car blows up
+    {
+        if (!engineInstance.isValid())
+            return;
+
+        engineInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        engineInstance.release();
     }
 
     private void Start()

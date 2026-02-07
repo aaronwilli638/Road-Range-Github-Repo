@@ -21,6 +21,7 @@ public class FmodParameterTracker : MonoBehaviour
     [SerializeField] private string distanceParameter = "Distance to Shredder";
     [SerializeField] private string slickModeParameter = "Slick Mode";
     [SerializeField] private string lapProgression = "Race Progression";
+    [SerializeField] private string deathStatus = "PlayerDeathStatus";
 
     private readonly List<EventInstance> eventInstances = new();
 

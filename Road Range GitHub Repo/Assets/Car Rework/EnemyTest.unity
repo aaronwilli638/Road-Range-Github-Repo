@@ -412,6 +412,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &23349289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -618,6 +623,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &32886335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1214,6 +1224,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &70947729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1735,6 +1750,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &99008134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3225,6 +3245,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &150463545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3504,6 +3529,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &162571159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3710,6 +3740,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &168929676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4209,6 +4244,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &206143062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4492,6 +4532,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &241105285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5833,6 +5878,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &282294267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7321,6 +7371,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &345563839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7916,6 +7971,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &393253088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9440,6 +9500,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &466415273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9615,6 +9680,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &466855711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10187,6 +10257,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &533484217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10393,6 +10468,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &537842577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10568,6 +10648,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &538305551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11032,6 +11117,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &566582397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11342,6 +11432,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &596921549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11590,6 +11685,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &603546192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12023,6 +12123,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &617542718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13584,6 +13689,70 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 50738988}
     m_Modifications:
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: trackedParameter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: fmodEventPaths.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: boostEventPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: otherEventPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: 'fmodEventPaths.Array.data[1]'
+      value: event:/SFX/Slick5
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: trackedParameters.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: 'boostEventPaths.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: 'otherEventPaths.Array.data[0]'
+      value: event:/SFX/Slick
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: 'otherEventPaths.Array.data[1]'
+      value: event:/SFX/Slick
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: 'trackedParameters.Array.data[1]'
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: trackedParameters.Array.data[0].parameter
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: trackedParameters.Array.data[1].parameter
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: trackedParameters.Array.data[0].fmodEventPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: trackedParameters.Array.data[1].fmodEventPaths.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: 'trackedParameters.Array.data[0].fmodEventPaths.Array.data[0]'
+      value: event:/SFX/Boost
+      objectReference: {fileID: 0}
+    - target: {fileID: 80794467106345167, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: 'trackedParameters.Array.data[1].fmodEventPaths.Array.data[0]'
+      value: event:/SFX/Slick 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1849474327229064165, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.219358
@@ -13636,6 +13805,14 @@ PrefabInstance:
       propertyPath: shredderTransform
       value: 
       objectReference: {fileID: 1324195384}
+    - target: {fileID: 3046185254419182648, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: killsRequired
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046185254419182648, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+      propertyPath: multikillWindow
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3867752068521744346, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
       propertyPath: m_Name
       value: Audio Manager
@@ -13644,8 +13821,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 3046185254419182648, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 7964408227044455761, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60291e9d048d9c741a704a05f65a4fce, type: 3}
@@ -14105,6 +14286,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &719359813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14723,6 +14909,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &749177560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14903,6 +15094,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &767000678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16044,6 +16240,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &812586107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16711,6 +16912,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &835119678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17063,6 +17269,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &842732220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17616,6 +17827,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &873127468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18164,6 +18380,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &883495887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18483,6 +18704,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &895713578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19216,6 +19442,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &906149425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20134,6 +20365,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &965018814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20417,6 +20653,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &967615795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20815,6 +21056,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &989062322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22635,6 +22881,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1093968673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22960,6 +23211,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1100925865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23251,6 +23507,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1109401053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24438,6 +24699,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1198783729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24613,6 +24879,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1200971213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24969,6 +25240,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1217211355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25294,6 +25570,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1225633296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26421,6 +26702,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1300490279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26676,7 +26962,7 @@ MonoBehaviour:
   catchUpMultiplier: 3
   headStartDistance: 500
   followDistance: 300
-  distanceDecayRate: 10
+  distanceDecayRate: 7
   maxFollowDistance: 300
   rotationSpeed: 5
 --- !u!65 &1324195381
@@ -27053,6 +27339,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1350339551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27228,6 +27519,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1352819989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27403,6 +27699,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1354497357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27728,6 +28029,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1366153451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28913,6 +29219,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1449997339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29924,6 +30235,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1476504158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30312,6 +30628,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1539679528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30599,6 +30920,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1548785529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31244,6 +31570,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1573743817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34660,6 +34991,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1723401722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36867,6 +37203,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1821912791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37926,6 +38267,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1881559780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38598,6 +38944,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1914764389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39206,6 +39557,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1937431696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39979,6 +40335,11 @@ MonoBehaviour:
   fxLifetime: 5
   stopDuration: 0.22
   pushBackAmount: 20
+  audioOffset: {x: 0, y: 0, z: 0}
+  multikillWindow: 3
+  killsRequired: 3
+  multikillEvent: event:/VA/Player Muiltikill
+  multikillCooldown: 5
 --- !u!114 &1980160962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43231,6 +43592,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 329255206}
     - target: {fileID: 1897814946339637886, guid: 621968688747fda4f9d3d3b9bb8ee441, type: 3}
+      propertyPath: killTracker
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1897814946339637886, guid: 621968688747fda4f9d3d3b9bb8ee441, type: 3}
       propertyPath: stopDuration
       value: 0.22
       objectReference: {fileID: 0}
@@ -43238,6 +43603,10 @@ PrefabInstance:
       propertyPath: deathFxPrefab
       value: 
       objectReference: {fileID: 7536811756379516449, guid: c6364b1653dbfa54580cf7798abc91e3, type: 3}
+    - target: {fileID: 1897814946339637886, guid: 621968688747fda4f9d3d3b9bb8ee441, type: 3}
+      propertyPath: killsRequired
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1897814946339637886, guid: 621968688747fda4f9d3d3b9bb8ee441, type: 3}
       propertyPath: pushBackAmount
       value: 20
