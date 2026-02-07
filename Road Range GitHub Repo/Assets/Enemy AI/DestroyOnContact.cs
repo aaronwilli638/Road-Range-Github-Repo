@@ -1,5 +1,5 @@
 using UnityEngine;
-using FMODUnity;
+using FMODUnity; //in order for Fmod stuff to work I added this
 
 public class DestroyOnContact : MonoBehaviour
 {
@@ -10,8 +10,8 @@ public class DestroyOnContact : MonoBehaviour
     [SerializeField] private float fxLifetime = 2f;
     [SerializeField] private float stopDuration = 0.1f;
 
-    [Header("FMOD")]
-    [SerializeField] private string explosionEvent = "event:/SFX/Explosions";
+    [Header("FMOD")] //calling the fmod event
+    private string explosionEvent = "event:/SFX/Explosions";
     [SerializeField] private Vector3 audioOffset = Vector3.zero;
 
     private void OnCollisionEnter(Collision collision)

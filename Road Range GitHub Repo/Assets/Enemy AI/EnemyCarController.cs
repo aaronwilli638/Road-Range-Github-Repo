@@ -1,4 +1,6 @@
 using UnityEngine;
+using FMODUnity; 
+using FMOD.Studio; //needed for fmod commands
 
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyCarController : MonoBehaviour
@@ -12,23 +14,28 @@ public class EnemyCarController : MonoBehaviour
     public float rotationSmoothing = 5f;
     public LayerMask groundLayer;
 
+    [Header("FMOD")] //finding the fmod event to trigger
+    private string engineEvent = "event:/SFX/Enemy Engine";
+
     private Rigidbody rb;
     private float driveAcceleration;
     private float driveTurnSpeed;
     private float inputSteer;
     private float inputThrottle;
 
+    private EventInstance engineInstance; //stores engine sound so it can be stopped smoothly
+
     public Vector3 Forward => -transform.forward;
     public Vector3 Right => -transform.right;
     public float CurrentSpeed => rb.linearVelocity.magnitude;
-    
-    public float MaxSpeed 
+
+    public float MaxSpeed
     {
-        get 
-        { 
-            if (rb.linearDamping <= 0) return driveAcceleration; 
-            return driveAcceleration / rb.linearDamping; 
-        } 
+        get
+        {
+            if (rb.linearDamping <= 0) return driveAcceleration;
+            return driveAcceleration / rb.linearDamping;
+        }
     }
 
     private void Awake()
@@ -38,6 +45,25 @@ public class EnemyCarController : MonoBehaviour
         rb.useGravity = false;
         rb.maxAngularVelocity = 20f;
         rb.angularDamping = 5f;
+    }
+
+    private void OnEnable() //starts sound when activates, and attaches the 3d event to the rigidbofy
+    {
+        if (string.IsNullOrEmpty(engineEvent))
+            return;
+
+        engineInstance = RuntimeManager.CreateInstance(engineEvent);
+        RuntimeManager.AttachInstanceToGameObject(engineInstance, transform, rb);
+        engineInstance.start();
+    }
+
+    private void OnDisable() //fmod stop engine sound when car blows up
+    {
+        if (!engineInstance.isValid())
+            return;
+
+        engineInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        engineInstance.release();
     }
 
     private void Start()

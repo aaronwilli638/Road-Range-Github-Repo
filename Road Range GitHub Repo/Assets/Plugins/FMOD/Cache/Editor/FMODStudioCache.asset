@@ -227,10 +227,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639059904224024324
+  lastModified: 639060072231559634
   FileSizes:
   - Name: 
-    Value: 3800
+    Value: 3758
   Exists: 1
 --- !u!114 &-7562129860307458615
 MonoBehaviour:
@@ -497,33 +497,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-5526002109898484867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: snapshot:/Death
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: snapshot:/Death
-  Guid:
-    Data1: -1702580948
-    Data2: 1177216669
-    Data3: -308925793
-    Data4: -1581280716
-  Banks:
-  - {fileID: 6477649445481864516}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 0
 --- !u!114 &-4898054467958351595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,7 +753,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/MX.bank
   Name: MX
   StudioPath: bank:/MX
-  lastModified: 639059904224461341
+  lastModified: 639060072231993538
   FileSizes: []
   Exists: 1
 --- !u!114 &-1170398936645814887
@@ -839,7 +812,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1625
+  Length: 4500
 --- !u!114 &-364233077062202208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,7 +910,6 @@ MonoBehaviour:
   - {fileID: -8532952692093890106}
   - {fileID: 382803026624192668}
   - {fileID: -4331012711688089977}
-  - {fileID: 6320564090012370468}
   - {fileID: -4639159395450177518}
   - {fileID: 2145094693376722966}
   - {fileID: -8074463266427042410}
@@ -962,7 +934,7 @@ MonoBehaviour:
   - {fileID: 6703422859328310836}
   - {fileID: -8831040705140925663}
   - {fileID: 8765214667715297608}
-  - {fileID: -5526002109898484867}
+  - {fileID: 1724161260533001267}
   EditorParameters:
   - {fileID: -8210542897885909850}
   - {fileID: 6204052988843780519}
@@ -970,7 +942,7 @@ MonoBehaviour:
   - {fileID: 6477649445481864516}
   StringsBanks:
   - {fileID: -7764912298984058697}
-  cacheTime: 639059904226317061
+  cacheTime: 639060072234170864
   cacheVersion: 131601
 --- !u!114 &254464251811657141
 MonoBehaviour:
@@ -987,7 +959,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 639059904225361788
+  lastModified: 639060072233093331
   FileSizes: []
   Exists: 1
 --- !u!114 &382803026624192668
@@ -1130,6 +1102,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1724161260533001267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemy Engine
+  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
+  Path: event:/SFX/Enemy Engine
+  Guid:
+    Data1: 544208372
+    Data2: 1157499670
+    Data3: 789962405
+    Data4: -2123925639
+  Banks:
+  - {fileID: 6662667529963515718}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 5.6
+  MaxDistance: 350
+  Length: 14000
 --- !u!114 &2145094693376722966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1496,33 +1495,6 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
---- !u!114 &6320564090012370468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VA/Player Builds Big Combo
-  m_EditorClassIdentifier: FMODUnityEditor::FMODUnity.EditorEventRef
-  Path: event:/VA/Player Builds Big Combo
-  Guid:
-    Data1: -262807001
-    Data2: 1307142083
-    Data3: -2060275834
-    Data4: -2098060497
-  Banks:
-  - {fileID: 8930372222480843618}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2000
 --- !u!114 &6340693856922545193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1594,7 +1566,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639059904224010603
+  lastModified: 639060072231544353
   FileSizes: []
   Exists: 1
 --- !u!114 &6662667529963515718
@@ -1612,7 +1584,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639059904225109293
+  lastModified: 639060072232833424
   FileSizes: []
   Exists: 1
 --- !u!114 &6703422859328310836
@@ -1870,7 +1842,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/VA.bank
   Name: VA
   StudioPath: bank:/VA
-  lastModified: 639059904226317061
+  lastModified: 639060072234170864
   FileSizes: []
   Exists: 1
 --- !u!114 &9034150381300821992
